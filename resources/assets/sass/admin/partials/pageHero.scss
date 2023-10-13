@@ -1,0 +1,14 @@
+.pageHero {
+    background-color: $w;
+    border: 0;
+    border-radius: 40px;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+
+    h1 {
+        color: $darkBlue;
+        font-family: $ralBold;
+        font-size: 4rem;
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,25 @@
+//Core
+@import "core/mixins";
+@import "core/colours";
+@import "core/fonts";
+@import "core/typography";
+@import "core/customBtns";
+
+//Header
+@import "admin/partials/header";
+
+//Sidebar
+@import "admin/partials/sidebar";
+
+//Partials
+@import "admin/partials/adminMain";
+@import "admin/partials/pageHero";
+@import "admin/partials/pageMain";
+
+
+//pages
+@import "admin/pages/dashboard";
+
+//Footer
+
+//Responsive Styles
