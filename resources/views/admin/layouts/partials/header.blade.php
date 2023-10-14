@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
         @stack('page-styles')
 
+        @livewireStyles
+
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
@@ -19,6 +21,8 @@
 
         <x-head.tinymce-config/>
         @stack('page-scripts')
+
+        @livewireScripts
 
         @vite(['resources/assets/sass/app.scss', 'resources/assets/sass/admin.scss', 'resources/assets/js/app.js', 'resources/assets/js/admin.js'])
     </head>
