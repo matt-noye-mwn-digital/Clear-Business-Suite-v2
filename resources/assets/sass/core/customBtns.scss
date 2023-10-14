@@ -1,0 +1,60 @@
+a.lightBlueBtn,
+button.lightBlueBtn,
+input.lightBlueBtn {
+
+}
+a.mediumBlueBtn,
+button.mediumBlueBtn,
+input.mediumBlueBtn {
+
+}
+a.darkBlueBtn,
+button.darkBlueBtn,
+input.darkBluebtn {
+    background-color: $darkBlue;
+    border: 0;
+    border-radius: 5px;
+    color: $w;
+    font-family: $ralMedium;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    text-align: center;
+    @include transition(all .4s ease-in-out);
+
+    &.btn-lg {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        text-align: center;
+    }
+
+    &:hover {
+        background-color: lighten($darkBlue, 15%);
+        border: 0;
+        box-shadow: none;
+        color: $w;
+        outline: none;
+        text-decoration: none;
+    }
+}
+
+.btn {
+    .fa-chevron-right,
+    .fa-plus{
+        margin-left: 5px;
+        @include transition(all .4s ease-in-out);
+    }
+    .fa-chevron-left {
+        margin-right: 5px;
+        @include transition(all .4s ease-in-out);
+    }
+    &:hover {
+        .fa-chevron-right,
+        .fa-plus {
+            margin-left: 15px;
+        }
+        .fa-chevron-left {
+            margin-right: 15px;
+        }
+    }
+}
+

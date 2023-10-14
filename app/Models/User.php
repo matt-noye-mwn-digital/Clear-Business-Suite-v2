@@ -45,6 +45,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getStatus(){
+        return match ($this->status) {
+            'active' => '<span class="badge text-bg-success">Active</span>',
+            'on_hold' => '<span class="badge text-bg-info">On Hold</span>',
+            'inactive' => '<span class="badge text-bg-warning">Inactive</span>',
+            'closed' => '<span class="badge text-bg-danger">Closed</span>'
+        };
+    }
+
     public function userDetails(){
         return $this->hasOne(UserDetail::class);
     }

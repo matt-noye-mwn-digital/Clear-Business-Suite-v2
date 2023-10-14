@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.clients.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -114,7 +114,12 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="">State/County</label>
-
+                                <input type="text" name="state_county" id="state_county" value="{{ old('state_county') }}">
+                                @error('state_county')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-3">
                                 <label for="">Zip/Postcode *</label>
@@ -127,6 +132,16 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="">Country *</label>
+                                <select name="country" id="country" required>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country }}" @if($country == 'United Kingdom') selected @endif>{{ $country }}</option>
+                                    @endforeach
+                                </select>
+                                @error('country')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
@@ -141,10 +156,27 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="">Default Currency</label>
+                                <select name="default_currency" id="default_currency">
+                                    <option selected disabled>-- Select a currency --</option>
+                                    @foreach($currencies as $currency)
+                                        <option value="{{ $currency->name }}">{{ $currency->name }} - {{ $currency->code }} - {{ $currency->symbol }}</option>
+                                    @endforeach
+                                </select>
+                                @error('default_currency')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
-
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-lg darkBlueBtn">
+                                    Save <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

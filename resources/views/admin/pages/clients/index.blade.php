@@ -14,4 +14,45 @@
         buttonLink="{{ route('admin.clients.create') }}"
     />
     {{ Breadcrumbs::render('admin-clients') }}
+
+    <section class="pageMain">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($clients as $client)
+                                <tr>
+                                    <td>{{ $client->id }}</td>
+                                    <td>{{ $client->first_name }} {{ $client->last_name }}</td>
+                                    <td>
+                                        @if($client->userDetail)
+                                            {{ $client->userDetail->company_name }}
+                                        @else
+                                            --
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $client->email }}
+                                    </td>
+                                    <td>
+                                        {!! $client->getStatus() !!}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
