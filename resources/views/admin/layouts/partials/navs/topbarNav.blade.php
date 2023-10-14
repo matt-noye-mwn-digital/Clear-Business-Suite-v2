@@ -1,12 +1,12 @@
 <div class="topBar">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-lg-3">
                 <a href="{{ route('admin.dashboard') }}" class="topbar-brand">
                     <x-application-logo />
                 </a>
                 <button type="button" class="sidebarMenuToggler">
-                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="col-lg-6">
@@ -49,7 +49,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="" class="dropdown-link">
+                                <a href="">
                                     My Profile
                                 </a>
                             </li>

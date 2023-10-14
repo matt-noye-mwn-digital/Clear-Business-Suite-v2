@@ -1,0 +1,12 @@
+main.adminMain {
+    margin-left: auto;
+    padding: 1rem 1rem 1rem 0;
+    //@include transition(all .4s ease-in-out);
+    width: calc(100% - 15% - 15px);
+
+    &.full {
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+    }
+}

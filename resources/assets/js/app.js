@@ -1,4 +1,4 @@
-import './bootstrap.js';
+import 'bootstrap';
 import DataTable from 'datatables.net-bs5';
 import Swal from 'sweetalert2';
 

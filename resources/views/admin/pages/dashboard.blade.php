@@ -1,13 +1,12 @@
 @extends('layouts.admin')
-@push('page-title')
-    Admin Dashboard
-@endpush
-@push('page-styles')
 
-@endpush
-@push('page-scripts')
+<x-admin.page-top
+    pageTitle="Dashboard"
+    pageStyles=""
+    pageScripts=""
+/>
 
-@endpush
 @section('content')
-    page content here
+    <x-admin.page-hero title="Welcome, {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}" displayButton="no" />
+    {{ Breadcrumbs::render('admin-dashboard') }}
 @endsection

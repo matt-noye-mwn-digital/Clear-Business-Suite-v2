@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Client\ClientIndexController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,12 @@ Route::get('/', function () {
 //Admin Routes
 Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('dashboard', [AdminIndexController::class, 'index'])->name('dashboard');
+
+    //Client Routes
+    Route::resource('clients', AdminClientController::class);
+    Route::prefix('clients')->name('clients.')->group(function(){
+
+    });
 });
 
 //Client Routes

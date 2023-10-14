@@ -16,6 +16,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+        <x-head.tinymce-config/>
         @stack('page-scripts')
 
         @vite(['resources/assets/sass/app.scss', 'resources/assets/sass/admin.scss', 'resources/assets/js/app.js', 'resources/assets/js/admin.js'])
@@ -26,5 +28,5 @@
             @include('admin.layouts.partials.navs.topbarNav')
         </header>
         @include('admin.layouts.partials.sidebar')
-        <main class="adminMain">
+        <main class="adminMain ">
 

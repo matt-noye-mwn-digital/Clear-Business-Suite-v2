@@ -1,0 +1,57 @@
+.breadCrumbsBanner {
+    align-items: center;
+    background-color: $w;
+    border: 0;
+    border-radius: 20px;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding:1rem;
+
+    ol {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            a{
+                color: $darkBlue;
+                font-family: $ralReg;
+                font-size: 1rem;
+                text-decoration: none;
+                @include transition(all .4s ease-in-out);
+
+                &:hover {
+                    background-color: transparent;
+                    border: 0;
+                    border-radius: 0;
+                    box-shadow: none;
+                    color: $mediumBlue;
+                    outline: none;
+                    text-decoration: none;
+                }
+            }
+            &.active {
+                color: $mediumBlue;
+                font-family: $ralBold;
+                font-size: 1rem;
+                &:before {
+                    color: $darkBlue;
+                    content: '>';
+                    font-family: $ralReg;
+                    margin: 0 10px 0 5px;
+                }
+
+            }
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: $darkBlue;
+            content: '>';
+            float: none;
+            font-family: $ralReg;
+            margin: 0 10px 0 5px;
+        }
+    }
+}

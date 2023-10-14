@@ -1,13 +1,19 @@
 header {
+    background-color: $darkBlue;
+    /*position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1080;*/
     .topBar {
         align-items: center;
         display: flex;
         flex-direction: row;
         justify-content: center;
+        padding: .5rem 0;
         a.topbar-brand {
-            color: $darkBlue;
+            color: $w;
             font-family: $ralBold;
-            font-size: 2rem;
+            font-size: 1.5rem;
             text-decoration: none;
             @include transition(all .4s ease-in-out);
 
@@ -21,14 +27,79 @@ header {
 
             }
         }
+        button.sidebarMenuToggler {
+            background-color: $w;
+            border: 0;
+            border-radius: 100%;
+            color: $darkBlue;
+            font-size: 1rem;
+            margin-left: 10px;
+            outline: none;
+            padding: .15rem .65rem;
+            text-align: center;
+            @include transition(all .4s ease-in-out);
+
+            &:hover {
+                background-color: $lightBlue;
+                border: 0;
+                box-shadow: none;
+                color: $darkBlue;
+                outline: none;
+                text-decoration: none;
+            }
+
+        }
+        form.headerSearchForm {
+            background-color: $w;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            display: block;
+            overflow: hidden;
+            width: 100%;
+
+            .input-group {
+                border-radius: 10px;
+                display: flex;
+                height: 50px;
+                margin: 0;
+                width: 100%;
+
+                input[type='text'] {
+                    background-color: transparent;
+                    border: 0;
+                    border-radius: 0;
+                    height: 100%;
+                    padding: .5rem;
+                    width: 94%;
+                }
+                .input-group-text {
+                    background-color: transparent;
+                    border: 0;
+                    border-radius: 0;
+                    height: 100%;
+                }
+            }
+        }
         ul.topBarMainLinks {
             margin: 0;
             padding: 0;
             text-align: right;
 
             li {
+                margin-right: 20px;
                 a {
+                    color: $w;
+                    font-family: $ralBold;
+                    font-size: 1rem;
                     text-decoration: none;
+                    @include transition(all .4s ease-in-out);
+
+                    &:hover {
+                        box-shadow: none;
+                        color: $lightBlue;
+                        outline: none;
+                        text-decoration: none;
+                    }
                 }
                 &.dropdown {
                     a.dropdown-toggle {
@@ -39,12 +110,40 @@ header {
                         }
                     }
                     .dropdown-menu {
-                        li {
-                            a {
+                        -webkit-box-shadow: 0px 9px 15px -5px rgba(0,0,0,0.5);
+                        -moz-box-shadow: 0px 9px 15px -5px rgba(0,0,0,0.5);
+                        box-shadow: 0px 9px 15px -5px rgba(0,0,0,0.5);
+                        border: 0;
+                        border-radius: 0;
 
+                        padding: 1rem;
+                        li {
+                            display: block;
+                            margin-bottom: .25rem;
+                            width: 100%;
+                            a {
+                                color: $darkBlue;
+                                display: block;
+                                font-size: 1rem;
+                                padding: .25rem 0;
+                                @include transition(all .4s ease-in-out);
+                                width: 100%;
+
+                                &:hover {
+                                    border: 0;
+                                    box-shadow: none;
+                                    color: $lightBlue;
+                                    outline: none;
+                                    text-decoration: none;
+                                }
                             }
+
+
                         }
                     }
+                }
+                &:last-of-type {
+                    margin-right: 0;
                 }
             }
         }
