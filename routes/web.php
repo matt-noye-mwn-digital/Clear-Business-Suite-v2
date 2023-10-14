@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminIndexController;
+use App\Http\Controllers\Admin\Settings\AdminSettingsController;
 use App\Http\Controllers\Client\ClientIndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,11 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
     Route::resource('clients', AdminClientController::class);
     Route::prefix('clients')->name('clients.')->group(function(){
 
+    });
+
+    //Settings Routes
+    Route::prefix('settings')->name('settings.')->group(function(){
+       Route::get('/', [AdminSettingsController::class, 'index'])->name('index');
     });
 });
 

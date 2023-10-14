@@ -19,4 +19,10 @@ Breadcrumbs::for('admin-clients-create', function(BreadcrumbTrail $trail){
     $trail->push('Add Client', route('admin.clients.create'));
 });
 
+//Admin Settings
+Breadcrumbs::for('admin-settings', function(BreadcrumbTrail $trail){
+    $trail->parent('admin-dashboard');
+    $trail->push('Settings', route('admin.settings.index'));
+});
+
 
