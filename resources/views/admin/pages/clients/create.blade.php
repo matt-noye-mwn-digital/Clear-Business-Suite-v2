@@ -44,6 +44,107 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="">Email Address *</label>
+                                <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label for="">Website</label>
+                                <input type="text" name="website" id="website" value="{{ old('website') }}">
+                                @error('website')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label for="">Mobile Number</label>
+                                <input type="tel" name="mobile_number" id="mobile_number" value="{{ old('mobile_number') }}">
+                                @error('mobile_number')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label for="">Landline Number</label>
+                                <input type="tel" name="landline_number" id="landline_number" value="{{ old('landline_number') }}">
+                                @error('landline_number')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="">Address Line One *</label>
+                                <input type="text" name="address_line_one" id="address_line_one" value="{{ old('address_line_one') }}" required>
+                                @error('address_line_one')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Address Line Two</label>
+                                <input type="text" name="address_line_two" id="address_line_two" value="{{ old('address_line_two') }}">
+                                @error('address_line_two')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="">Town/City *</label>
+                                <input type="text" name="town_city" id="town_city" value="{{ old('town_city') }}">
+                                @error('town_city')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label for="">State/County</label>
+
+                            </div>
+                            <div class="col-md-3">
+                                <label for="">Zip/Postcode *</label>
+                                <input type="text" name="zip_postcode" id="zip_postcode" value="{{ old('zip_postcode') }}" required>
+                                @error('zip_postcode')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label for="">Country *</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="">Default Payment Method</label>
+                                <select name="default_payment_method" id="default_payment_method">
+                                    <option selected disabled>-- Select a payment method --</option>
+                                    @foreach($paymentMethods as $paymentMethod)
+                                        <option value="{{ $paymentMethod->name }}">{{ $paymentMethod->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Default Currency</label>
+                            </div>
+                        </div>
+
+
                     </form>
                 </div>
             </div>

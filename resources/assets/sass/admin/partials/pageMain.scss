@@ -6,6 +6,43 @@
     padding: 4rem 2rem;
 
     form {
-        
+        .row {
+            margin-bottom: 30px;
+        }
+        label {
+            color: $darkBlue;
+            display: block;
+            font-family: $ralMedium;
+            font-size: 1rem;
+            margin: 0 0 5px 0;
+            width: 100%;
+        }
+        input[type='text'],
+        input[type='email'],
+        input[type='tel'],
+        input[type='password'],
+        input[type='date'],
+        input[type='datetime-local'],
+        select {
+            background-color: transparent;
+            border: 1px solid $darkBlue;
+            border-radius: 5px;
+            color: $darkBlue;
+            display: block;
+            height: 40px;
+            padding: 0 .5rem;
+            @include transition(all .4s ease-in-out);
+            width: 100%;
+
+            &:focus {
+                background-color: transparent;
+                border: 1px solid $lightBlue;
+                box-shadow: none;
+                color: $darkBlue;
+                outline: none;
+                text-decoration: none;
+
+            }
+        }
     }
 }

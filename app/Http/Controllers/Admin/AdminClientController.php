@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
 class AdminClientController extends Controller
@@ -20,7 +21,9 @@ class AdminClientController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.clients.create');
+        $paymentMethods = PaymentMethod::orderBy('name', 'asc');
+
+        return view('admin.pages.clients.create', compact('paymentMethods'));
     }
 
     /**
