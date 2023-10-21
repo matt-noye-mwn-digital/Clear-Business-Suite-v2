@@ -53,6 +53,10 @@ Breadcrumbs::for('admin-todos-create', function(BreadcrumbTrail $trail){
     $trail->parent('admin-todos');
     $trail->push('Create Todo', route('admin.todos.create'));
 });
+Breadcrumbs::for('admin-todos-edit', function(BreadcrumbTrail $trail, Todo $todo){
+    $trail->parent('admin-todos');
+    $trail->push('edit ' . $todo->title . ' Todo', route('admin.todos.edit', $todo->id));
+});
 Breadcrumbs::for('admin-todos-show', function(BreadcrumbTrail $trail, Todo $todo){
     $trail->parent('admin-todos');
     $trail->push($todo->title , route('admin.todos.show', $todo->id));

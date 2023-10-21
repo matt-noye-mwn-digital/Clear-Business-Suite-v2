@@ -55,6 +55,7 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
         Route::post('/store', [AdminTodoController::class, 'store'])->name('store');
         Route::get('/{id}/show', [AdminTodoController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [AdminTodoController::class, 'edit'])->name('edit');
+        Route::put('/{id}/update', [AdminTodoController::class, 'update'])->name('update');
         Route::delete('/{id}/destroy', [AdminTodoController::class, 'destroy'])->name('destroy');
     });
 

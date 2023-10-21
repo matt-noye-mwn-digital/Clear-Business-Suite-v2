@@ -1,6 +1,6 @@
 import 'bootstrap';
 import DataTable from 'datatables.net-bs5';
-import Swal from 'sweetalert2';
+
 
 $(document).ready(function(){
 
@@ -9,8 +9,6 @@ $(document).ready(function(){
 
     });
 
-    //Setup SWAL
-    window.Swal = Swal;
 
     //SweetAlert Delete confirmation button
     $('.confirm-delete-btn').click(function(event){

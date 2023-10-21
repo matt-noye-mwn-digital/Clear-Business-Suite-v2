@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-hover clickableTable">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -38,7 +38,7 @@
                                     <td class="actions">
                                         <div class="btn-group">
                                             <a href="{{ route('admin.todos.show', $todo->id) }}" class="view-btn"><i class="fas fa-eye"></i></a>
-                                            <a href="" class="edit-btn"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.todos.edit', $todo->id) }}" class="edit-btn"><i class="fas fa-edit"></i></a>
                                             <form action="{{ route('admin.todos.destroy', $todo->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete') <!-- Add this hidden field to override the method -->

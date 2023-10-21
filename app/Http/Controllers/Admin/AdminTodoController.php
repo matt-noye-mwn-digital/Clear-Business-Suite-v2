@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TodoStoreRequest;
 use App\Models\Todo;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -61,15 +62,29 @@ class AdminTodoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $todo = Todo::findOrFail($id);
+        $staff = User::role(['super admin', 'admin'])->get();
+        return view('admin.pages.todos.edit', compact('todo', 'staff'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TodoStoreRequest $request, string $id)
     {
-        //
+        $todo = Todo::find($id);
+
+        $todo->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status,
+            'due_date' => $request->due_date,
+            'completed_at' => $request->completed_at,
+            'user_id' => $request->user_id,
+        ]);
+
+        activity()->log(auth()->user()->first_name . ' ' . auth()->user()->last_name . ' has updated a todo item');
+        return redirect('admin/todos')->with('success', 'Todo has been updated successfully');
     }
 
     /**
@@ -77,6 +92,10 @@ class AdminTodoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $todo = Todo::findOrFail($id);
+        $todo->delete();
+
+        activity()->log(auth()->user()->first_name . ' ' . auth()->user()->last_name . ' has deleted a todo');
+        return redirect('admin/todos')->with('success', 'Todo successfully deleted');
     }
 }
