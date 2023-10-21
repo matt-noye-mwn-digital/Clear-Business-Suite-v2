@@ -57,4 +57,13 @@ class User extends Authenticatable
     public function userDetails(){
         return $this->hasOne(UserDetail::class);
     }
+    public function lead(){
+        return $this->hasMany(Lead::class);
+    }
+    public function transaction(){
+        return $this->hasMany(Transaction::class);
+    }
+    public function todo(){
+        return $this->hasMany(Todo::class);
+    }
 }

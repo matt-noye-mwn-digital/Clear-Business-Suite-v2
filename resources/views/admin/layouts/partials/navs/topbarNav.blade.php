@@ -6,9 +6,27 @@
                     <a href="{{ route('admin.dashboard') }}" class="topbar-brand">
                         <x-application-logo />
                     </a>
-                    <button type="button" class="sidebarMenuToggler">
-                        <i class="fas fa-times"></i>
-                    </button>
+                    <div class="dropdown quickCreateDropdown">
+                        <button type="button" class="dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false" title="Quick create menu">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a href="{{ route('admin.clients.create') }}">
+                                    Create Client
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.leads.create') }}">Create Lead</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.transactions.create') }}">Create Transaction</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.todos.create') }}">Create Todo</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <form action="" method="post" class="headerSearchForm">
@@ -20,6 +38,11 @@
                 </div>
                 <div class="col-lg-3">
                     <ul class="list-inline ms-auto topBarMainLinks">
+                        <li class="list-inline-item">
+                            <button type="button" class="sidebarMenuToggler" title="Open/Close Sidebar">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </li>
                         <li class="list-inline-item">
                             <a href="">
                                 <i class="fas fa-bell"></i>

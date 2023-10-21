@@ -90,7 +90,9 @@ class AdminClientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $client = User::findOrFail($id);
+
+        return view('admin.pages.clients.show', compact('client'));
     }
 
     /**
@@ -98,15 +100,63 @@ class AdminClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client = User::findOrFail($id);
+        $paymentMethods = PaymentMethod::orderBy('name', 'asc')->get();
+        $countries = CountryListFacade::getList('en');
+        $currencies = Currency::orderBy('name', 'asc')->get();
+        return view('admin.pages.clients.edit', compact('client', 'paymentMethods', 'countries', 'currencies'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ClientStoreRequest $request, string $id)
     {
-        //
+        $client = User::find($id);
+
+        $profilePicture = NULL;
+        $profilePicturePath = NULL;
+
+        $password = Str::random(20);
+
+        if($request->hasFile('profile_picture')){
+            $profilePicture = $request->profile_picture;
+            $fileName = time().'_'.$profilePicture->getClientOriginalName();
+            $folder = 'public/clients/'. $request->first_name . ' ' . $request->last_name . '';
+
+            $profilePicturePath = $profilePicture->storeAs($folder, $fileName);
+        }
+
+        if($request->hasFile('profile_picture')){
+            $client->update([
+                'profile_picture' => $profilePicturePath
+            ]);
+        }
+
+        $client->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'profile_picture' => $client->profile_picture
+        ]);
+        $client->userDetails()->update([
+            'company_name' => $request->company_name,
+            'address_line_one' => $request->address_line_one,
+            'address_line_two' => $request->address_line_two,
+            'town_city' => $request->town_city,
+            'zip_postcode' => $request->zip_postcode,
+            'state_county' => $request->state_county,
+            'country' => $request->country,
+            'landline_number' => $request->landline_number,
+            'mobile_number' => $request->mobile_number,
+            'website' => $request->website,
+            'default_payment_method' => $request->default_payment_method,
+            'description' => $request->description,
+        ]);
+
+        activity()->log(auth()->user()->first_name .' '. auth()->user()->last_name . ' has updated client ' . $request->first_name . ' ' . $request->last_name . ' ' . $request->company_name);
+        return redirect('admin/clients')->with('success', 'Client has been updated successfully');
+
     }
 
     /**

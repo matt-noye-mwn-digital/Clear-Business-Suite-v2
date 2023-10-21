@@ -23,6 +23,8 @@
         input[type='password'],
         input[type='date'],
         input[type='datetime-local'],
+        input[type='number'],
+        input[type='url'],
         select {
             background-color: transparent;
             border: 1px solid $darkBlue;
@@ -42,6 +44,100 @@
                 outline: none;
                 text-decoration: none;
 
+            }
+        }
+    }
+    table {
+        &.clickableTable {
+            tbody {
+                tr {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        thead {
+            tr {
+                th {
+
+                    &.actions {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+        tbody {
+            font-size: .9rem;
+            tr {
+
+                td {
+
+                    &.actions {
+                        .btn-group {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 15px;
+                            justify-content: flex-end;
+
+                            .confirm-delete-btn {
+                                background-color: red;
+                                border: 0;
+                                border-radius: 5px;
+                                color: $w;
+                                font-size: .9rem;
+                                padding: .5rem;
+                                @include transition(all .4s ease-in-out);
+
+                                &:hover {
+                                    background-color: darken(red, 10%);
+                                    border: 0;
+                                    box-shadow: none;
+                                    color: $w;
+                                    outline: none;
+                                    text-decoration: none;
+                                }
+                            }
+                            .edit-btn {
+                                background-color: $mediumBlue;
+                                border: 0;
+                                border-radius: 5px;
+                                color: $w;
+                                font-size: .9rem;
+                                padding: .5rem;
+                                @include transition(all .4s ease-in-out);
+
+                                &:hover {
+                                    background-color: $lightBlue;
+                                    border: 0;
+                                    box-shadow: none;
+                                    color: $w;
+                                    outline: none;
+                                    text-decoration: none;
+                                }
+                            }
+                            a.view-btn {
+                                background-color: $darkBlue;
+                                border: 0;
+                                border-radius: 5px;
+                                color: $w;
+                                font-size: .9rem;
+                                padding: .5rem;
+                                @include transition(all .4s ease-in-out);
+
+                                &:hover {
+                                    background-color: $mediumBlue;
+                                    border: 0;
+                                    box-shadow: none;
+                                    color: $w;
+                                    outline: none;
+                                    text-decoration: none;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -6,7 +6,7 @@
                     <h1>{{ $title }}</h1>
                 </div>
                 <div class="col-lg-4 d-flex justify-content-end">
-                    <a href="{{ $buttonLink }}" class="button">{{ $buttonContent }}</a>
+                    <a href="{{ $buttonLink }}" class="btn btn-lg darkBlueBtn">{{ $buttonContent }}</a>
                 </div>
             </div>
         @else

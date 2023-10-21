@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminActivityLogController;
 use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminIndexController;
+use App\Http\Controllers\Admin\AdminLeadController;
+use App\Http\Controllers\Admin\AdminTodoController;
+use App\Http\Controllers\Admin\AdminTransactionController;
 use App\Http\Controllers\Admin\Settings\AdminSettingsController;
 use App\Http\Controllers\Client\ClientIndexController;
 use Illuminate\Support\Facades\Route;
@@ -24,15 +28,43 @@ Route::get('/', function () {
 Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('dashboard', [AdminIndexController::class, 'index'])->name('dashboard');
 
+    //Activity Log
+    Route::prefix('activity-log')->name('activity-log.')->group(function(){
+        Route::get('/', [AdminActivityLogController::class, 'index'])->name('index');
+        Route::post('clear', [AdminActivityLogController::class, 'clearLog'])->name('clear');
+    });
+
     //Client Routes
     Route::resource('clients', AdminClientController::class);
     Route::prefix('clients')->name('clients.')->group(function(){
 
     });
 
+    //Lead Routes
+    Route::resource('leads', AdminLeadController::class);
+
     //Settings Routes
     Route::prefix('settings')->name('settings.')->group(function(){
        Route::get('/', [AdminSettingsController::class, 'index'])->name('index');
+    });
+
+    //Todos
+    Route::prefix('todos')->name('todos.')->group(function(){
+        Route::get('/', [AdminTodoController::class, 'index'])->name('index');
+        Route::get('/create', [AdminTodoController::class, 'create'])->name('create');
+        Route::post('/store', [AdminTodoController::class, 'store'])->name('store');
+        Route::get('/{id}/show', [AdminTodoController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [AdminTodoController::class, 'edit'])->name('edit');
+        Route::delete('/{id}/destroy', [AdminTodoController::class, 'destroy'])->name('destroy');
+    });
+
+    //Transactions
+    Route::prefix('transactions')->name('transactions.')->group(function(){
+        Route::get('/', [AdminTransactionController::class, 'index'])->name('index');
+        Route::get('create', [AdminTransactionController::class, 'create'])->name('create');
+        Route::post('store', [AdminTransactionController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [AdminTransactionController::class, 'edit'])->name('edit');
+        Route::put('/{id}/update', [AdminTransactionController::class, 'update'])->name('update');
     });
 });
 

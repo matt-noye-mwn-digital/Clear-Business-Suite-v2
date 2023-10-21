@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <table class="table">
+                    <table class="table table-hover clickableTable">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -31,7 +31,7 @@
                         </thead>
                         <tbody>
                             @foreach($clients as $client)
-                                <tr>
+                                <tr onclick="window.location.href='{{ route('admin.clients.show', $client->id) }}'">
                                     <td>{{ $client->id }}</td>
                                     <td>{{ $client->first_name }} {{ $client->last_name }}</td>
                                     <td>

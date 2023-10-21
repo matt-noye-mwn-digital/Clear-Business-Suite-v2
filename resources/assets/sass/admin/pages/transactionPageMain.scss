@@ -1,0 +1,32 @@
+.transactionPageMain {
+    #transactionsLineChart {
+        height: 100% !important;
+        width: 100% !important;
+    }
+    .transactionAmountItem {
+        border: 1px solid lighten($b, 80%);
+        border-radius: 10px;
+        display: block;
+        margin: 0 0 30px auto;
+        padding: 1rem 2rem;
+        width: 85%;
+
+        i {
+            color: $darkBlue;
+            font-size: 3rem;
+        }
+        h5 {
+            color: lighten($b, 75%);
+            font-family: $ralMedium;
+            font-size: 1.15rem;
+            line-height: 1.65rem;
+            margin-bottom: 0;
+        }
+        h3 {
+            color: $darkBlue;
+            font-family: $ralBold;
+            font-size: 2rem;
+            line-height: 2.5rem;
+        }
+    }
+}

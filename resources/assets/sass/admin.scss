@@ -15,11 +15,14 @@
 @import "admin/partials/adminMain";
 @import "admin/partials/pageHero";
 @import "admin/partials/breadcrumbsBanner";
+@import "admin/partials/adminActionsBanner";
 @import "admin/partials/pageMain";
 
 
 //pages
 @import "admin/pages/dashboard";
+@import "admin/pages/clientProfile";
+@import "admin/pages/transactionPageMain";
 
 //Footer
 

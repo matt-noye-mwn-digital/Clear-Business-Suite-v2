@@ -1,0 +1,68 @@
+.adminActionBanner {
+    background-color: $w;
+    border: 0;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+
+    .btn-group {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: flex-end;
+        .confirm-delete-btn {
+            background-color: red;
+            border: 0;
+            border-radius: 5px;
+            color: $w;
+            font-size: 1rem;
+            padding: .5rem 1rem;
+            @include transition(all .4s ease-in-out);
+
+            &:hover {
+                background-color: darken(red, 10%);
+                border: 0;
+                box-shadow: none;
+                color: $w;
+                outline: none;
+                text-decoration: none;
+            }
+        }
+        .edit-btn {
+            background-color: $mediumBlue;
+            border: 0;
+            border-radius: 5px;
+            color: $w;
+            font-size: 1rem;
+            padding: .5rem 1rem;
+            @include transition(all .4s ease-in-out);
+
+            &:hover {
+                background-color: $lightBlue;
+                border: 0;
+                box-shadow: none;
+                color: $w;
+                outline: none;
+                text-decoration: none;
+            }
+        }
+        a.view-btn {
+            background-color: $darkBlue;
+            border: 0;
+            border-radius: 5px;
+            color: $w;
+            font-size: 1rem;
+            padding: .5rem 1rem;
+            @include transition(all .4s ease-in-out);
+
+            &:hover {
+                background-color: $mediumBlue;
+                border: 0;
+                box-shadow: none;
+                color: $w;
+                outline: none;
+                text-decoration: none;
+            }
+        }
+    }
+}

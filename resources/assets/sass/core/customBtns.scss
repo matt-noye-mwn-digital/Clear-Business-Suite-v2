@@ -6,12 +6,7 @@ input.lightBlueBtn {
 a.mediumBlueBtn,
 button.mediumBlueBtn,
 input.mediumBlueBtn {
-
-}
-a.darkBlueBtn,
-button.darkBlueBtn,
-input.darkBluebtn {
-    background-color: $darkBlue;
+    background-color: $mediumBlue;
     border: 0;
     border-radius: 5px;
     color: $w;
@@ -27,8 +22,43 @@ input.darkBluebtn {
         text-align: center;
     }
 
-    &:hover {
-        background-color: lighten($darkBlue, 15%);
+    &:hover,
+    &:focus,
+    &.active,
+    &:disabled{
+        background-color: $lightBlue;
+        border: 0;
+        box-shadow: none;
+        color: $w;
+        outline: none;
+        text-decoration: none;
+    }
+}
+a.darkBlueBtn,
+button.darkBlueBtn,
+input.darkBluebtn {
+    background-color: $darkBlue;
+    border: 0;
+    border-radius: 5px;
+    color: $w;
+    font-family: $ralMedium;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    @include transition(all .4s ease-in-out);
+
+    &.btn-lg {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        text-align: center;
+    }
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:disabled{
+        background-color: $mediumBlue;
         border: 0;
         box-shadow: none;
         color: $w;
@@ -44,6 +74,7 @@ input.darkBluebtn {
         @include transition(all .4s ease-in-out);
     }
     .fa-chevron-left {
+        margin-right: 5px;
         margin-right: 5px;
         @include transition(all .4s ease-in-out);
     }
