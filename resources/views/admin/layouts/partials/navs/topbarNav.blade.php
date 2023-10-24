@@ -43,10 +43,43 @@
                                 <i class="fas fa-times"></i>
                             </button>
                         </li>
-                        <li class="list-inline-item">
-                            <a href="">
+                        <li class="list-inline-item dropdown notificationsMenuDrop">
+                            <button type="button" class="dropdown-toggle notificationsToggleBtn" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-bell"></i>
-                            </a>
+                                @if(auth()->user()->unreadNotifications)
+                                    <span class="notifItemCount">
+                                        {{ auth()->user()->unreadNotifications->count() }}
+                                    </span>
+                                @endif
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end notifications-dropdown">
+                                <li>
+                                    <div class="row align-items-center notifTopItem">
+                                        <div class="col-md-6">
+                                            <h5>Notifications</h5>
+                                        </div>
+                                        <div class="col-md-6 d-flex justify-content-end">
+                                            <form action="{{ route('admin.mark-all-notifications-as-read') }}" method="post">
+                                                @csrf
+                                                <button type="submit">Mark all as read</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                                @foreach(auth()->user()->unreadNotifications as $notification)
+                                    <li class="singleNotification">
+                                        <h6>{{ $notification->data['title'] }}</h6>
+                                        <p>
+                                            {{ $notification->data['message'] }}
+                                        </p>
+                                        <form action="{{ route('admin.mark-notification-as-read', $notification->id) }}" method="post">
+                                            @csrf
+                                            @method('patch')
+                                            <button type="submit" class="markAsReadSingleBtn"><i class="fas fa-times"></i></button>
+                                        </form>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </li>
                         <li class="list-inline-item todoMenuItem">
                             <a href="{{ route('admin.todos.index') }}">

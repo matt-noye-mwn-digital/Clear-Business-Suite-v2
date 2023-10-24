@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminLeadController;
 use App\Http\Controllers\Admin\AdminNoteController;
+use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminTodoController;
 use App\Http\Controllers\Admin\AdminTransactionController;
 use App\Http\Controllers\Admin\AdminUserNoteController;
@@ -47,6 +48,10 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
 
     //Note Routes
     Route::resource('notes', AdminUserNoteController::class);
+
+    //Notifications
+    Route::get('mark-all-notifications-as-read', [AdminNotificationController::class, 'markAllNotificationsAsRead'])->name('mark-all-notifications-as-read');
+    Route::patch('mark-notification-as-read/{id}', [AdminNotificationController::class, 'markNotificationAsRead'])->name('mark-notification-as-read');
 
     //Settings Routes
     Route::prefix('settings')->name('settings.')->group(function(){

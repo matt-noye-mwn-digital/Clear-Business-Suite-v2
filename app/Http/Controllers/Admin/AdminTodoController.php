@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TodoStoreRequest;
 use App\Models\Todo;
 use App\Models\User;
+use App\Notifications\AdminUserTodoNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +36,7 @@ class AdminTodoController extends Controller
      */
     public function store(Request $request)
     {
-        Todo::create([
+        $todo = Todo::create([
             'title' => $request->title,
             'description' => $request->description,
             'status' => $request->status,
@@ -43,6 +44,14 @@ class AdminTodoController extends Controller
             'completed_at' => $request->completed_at,
             'user_id' => $request->user_id,
         ]);
+
+        $userNotify = [User::find($request->user_id), Auth::user()];
+
+        foreach ($userNotify as $user) {
+            if ($user) {
+                $user->notify(new AdminUserTodoNotification($todo));
+            }
+        }
 
         activity()->log(auth()->user()->first_name . ' ' . auth()->user()->last_name . ' has created a new todo item');
         return redirect('admin/todos')->with('success', 'Todo has been created successfully');
