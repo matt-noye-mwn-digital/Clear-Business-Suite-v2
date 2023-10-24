@@ -48,8 +48,13 @@
                                 <i class="fas fa-bell"></i>
                             </a>
                         </li>
-                        <li class="list-inline-item">
-                            <a href="">
+                        <li class="list-inline-item todoMenuItem">
+                            <a href="{{ route('admin.todos.index') }}">
+                                @if($todoCount > 0)
+                                    <span class="itemCount">
+                                        {{ $todoCount }}
+                                    </span>
+                                @endif
                                 <i class="fas fa-clipboard"></i>
                             </a>
                         </li>
@@ -78,7 +83,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">My Notes</a>
+                                    <a href="{{ route('admin.notes.index') }}">My Notes</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

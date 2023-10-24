@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
@@ -23,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //Set pagination to use Bootstrap
+        Paginator::useBootstrapFive();
+
         //Settings
         if(Schema::hasTable('settings')){
             $settings = Cache::remember('settings', now()->addDay(), function(){

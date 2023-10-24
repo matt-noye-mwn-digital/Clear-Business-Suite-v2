@@ -4,8 +4,10 @@ use App\Http\Controllers\Admin\AdminActivityLogController;
 use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminLeadController;
+use App\Http\Controllers\Admin\AdminNoteController;
 use App\Http\Controllers\Admin\AdminTodoController;
 use App\Http\Controllers\Admin\AdminTransactionController;
+use App\Http\Controllers\Admin\AdminUserNoteController;
 use App\Http\Controllers\Admin\Settings\AdminSettingsController;
 use App\Http\Controllers\Client\ClientIndexController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +44,9 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
 
     //Lead Routes
     Route::resource('leads', AdminLeadController::class);
+
+    //Note Routes
+    Route::resource('notes', AdminUserNoteController::class);
 
     //Settings Routes
     Route::prefix('settings')->name('settings.')->group(function(){

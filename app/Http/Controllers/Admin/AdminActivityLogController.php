@@ -13,7 +13,7 @@ class AdminActivityLogController extends Controller
      */
     public function index()
     {
-        $activities = Activity::all();
+        $activities = Activity::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.pages.activity-log.index', compact('activities'));
     }
 

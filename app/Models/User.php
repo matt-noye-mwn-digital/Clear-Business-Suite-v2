@@ -66,4 +66,7 @@ class User extends Authenticatable
     public function todo(){
         return $this->hasMany(Todo::class);
     }
+    public function UserNote(){
+        return $this->hasMany(UserNote::class);
+    }
 }

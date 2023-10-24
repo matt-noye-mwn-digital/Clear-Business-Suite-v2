@@ -163,6 +163,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Monarobase\CountryList\CountryListServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */
@@ -172,6 +173,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        App\Providers\TodoCountServiceProvider::class,
     ])->toArray(),
 
     /*
