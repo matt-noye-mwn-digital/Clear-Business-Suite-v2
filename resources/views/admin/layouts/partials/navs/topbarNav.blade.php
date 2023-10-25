@@ -25,6 +25,9 @@
                             <li>
                                 <a href="{{ route('admin.todos.create') }}">Create Todo</a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.projects.create') }}">Create Project</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -61,7 +64,7 @@
                                         <div class="col-md-6 d-flex justify-content-end">
                                             <form action="{{ route('admin.mark-all-notifications-as-read') }}" method="post">
                                                 @csrf
-                                                <button type="submit">Mark all as read</button>
+                                                <button type="submit" class="markAllReadButton">Mark all as read</button>
                                             </form>
                                         </div>
                                     </div>

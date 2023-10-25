@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminTodoController;
 use App\Http\Controllers\Admin\AdminTransactionController;
 use App\Http\Controllers\Admin\AdminUserNoteController;
+use App\Http\Controllers\Admin\Projects\AdminProjectIndexController;
 use App\Http\Controllers\Admin\Settings\AdminSettingsController;
 use App\Http\Controllers\Client\ClientIndexController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,13 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
     //Notifications
     Route::get('mark-all-notifications-as-read', [AdminNotificationController::class, 'markAllNotificationsAsRead'])->name('mark-all-notifications-as-read');
     Route::patch('mark-notification-as-read/{id}', [AdminNotificationController::class, 'markNotificationAsRead'])->name('mark-notification-as-read');
+
+    //Projects
+    Route::prefix('projects')->name('projects.')->group(function(){
+        Route::get('/', [AdminProjectIndexController::class, 'index'])->name('index');
+        Route::get('create', [AdminProjectIndexController::class, 'create'])->name('create');
+        Route::post('store', [AdminprojectIndexController::class, 'store'])->name('store');
+    });
 
     //Settings Routes
     Route::prefix('settings')->name('settings.')->group(function(){

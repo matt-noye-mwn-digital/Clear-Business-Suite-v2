@@ -39,6 +39,14 @@
             <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Projects
             </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{{ route('admin.projects.index') }}">All Projects</a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.projects.create') }}">Create Project</a>
+                </li>
+            </ul>
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">

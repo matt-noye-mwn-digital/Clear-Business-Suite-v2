@@ -53,6 +53,15 @@ Breadcrumbs::for('admin-notes-edit', function(BreadcrumbTrail $trail, UserNote $
     $trail->parent('admin-notes');
     $trail->push('edit ' . $note->title, route('admin.notes.edit', $note->id));
 });
+//Admin Projects
+Breadcrumbs::for('admin-projects', function(BreadcrumbTrail $trail){
+   $trail->parent('admin-dashboard');
+   $trail->push('All Projects', route('admin.projects.index'));
+});
+Breadcrumbs::for('admin-projects-create', function(BreadcrumbTrail $trail){
+    $trail->parent('admin-projects');
+    $trail->push('Create Project', route('admin.projects.create'));
+});
 
 //Admin Settings
 Breadcrumbs::for('admin-settings', function(BreadcrumbTrail $trail){
