@@ -49,7 +49,7 @@
                                     </td>
                                     <td class="actions">
                                         <div class="btn-group">
-                                            <a href="" class="view-btn"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('admin.projects.show', $project->id) }}" class="view-btn"><i class="fas fa-eye"></i></a>
                                             <a href="" class="edit-btn"><i class="fas fa-edit"></i></a>
                                             <form action="" method="POST">
                                                 @csrf

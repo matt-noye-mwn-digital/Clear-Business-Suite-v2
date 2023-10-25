@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Project;
 use App\Models\Todo;
 use App\Models\User;
 use App\Models\UserNote;
@@ -61,6 +62,10 @@ Breadcrumbs::for('admin-projects', function(BreadcrumbTrail $trail){
 Breadcrumbs::for('admin-projects-create', function(BreadcrumbTrail $trail){
     $trail->parent('admin-projects');
     $trail->push('Create Project', route('admin.projects.create'));
+});
+Breadcrumbs::for('admin-projects-show', function(BreadcrumbTrail $trail, Project $project){
+   $trail->parent('admin-projects');
+   $trail->push('View ' . $project->project_name, route('admin.projects.show', $project->id));
 });
 
 //Admin Settings

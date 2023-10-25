@@ -67,7 +67,9 @@ class AdminProjectIndexController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        return view('admin.pages.projects.show', compact('project'));
     }
 
     /**

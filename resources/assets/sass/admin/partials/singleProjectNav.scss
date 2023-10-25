@@ -1,0 +1,37 @@
+nav.singleProjectNav {
+    ul {
+        display: flex;
+        flex-direction: row;
+
+        gap: 20px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        li {
+            a {
+                border-bottom: 1px solid transparent;
+                color: $darkBlue;
+                display: block;
+                font-family: $ralBold;
+                font-size: 1.2rem;
+                padding: .5rem .75rem;
+                text-decoration: none;
+                @include transition(all .4s ease-in-out);
+                width: 100%;
+
+                &:hover,
+                &.active {
+                    background-color: transparent;
+                    border: 0;
+                    border-bottom: 1px solid $mediumBlue;
+                    box-shadow: none;
+                    color: $mediumBlue;
+                    outline: none;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

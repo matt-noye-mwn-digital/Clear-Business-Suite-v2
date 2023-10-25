@@ -59,6 +59,7 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
         Route::get('/', [AdminProjectIndexController::class, 'index'])->name('index');
         Route::get('create', [AdminProjectIndexController::class, 'create'])->name('create');
         Route::post('store', [AdminprojectIndexController::class, 'store'])->name('store');
+        Route::get('/{id}/show', [AdminProjectIndexController::class, 'show'])->name('show');
     });
 
     //Settings Routes

@@ -17,12 +17,14 @@
 @import "admin/partials/breadcrumbsBanner";
 @import "admin/partials/adminActionsBanner";
 @import "admin/partials/pageMain";
+@import "admin/partials/singleProjectNav";
 
 
 //pages
 @import "admin/pages/dashboard";
 @import "admin/pages/clientProfile";
 @import "admin/pages/transactionPageMain";
+@import "admin/pages/projectSinglePage";
 
 //Footer
 
