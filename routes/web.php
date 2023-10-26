@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminTodoController;
 use App\Http\Controllers\Admin\AdminTransactionController;
 use App\Http\Controllers\Admin\AdminUserNoteController;
 use App\Http\Controllers\Admin\Projects\AdminProjectIndexController;
+use App\Http\Controllers\Admin\Projects\AdminProjectTaskController;
 use App\Http\Controllers\Admin\Settings\AdminSettingsController;
 use App\Http\Controllers\Client\ClientIndexController;
 use Illuminate\Support\Facades\Route;
@@ -51,7 +52,7 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
     Route::resource('notes', AdminUserNoteController::class);
 
     //Notifications
-    Route::get('mark-all-notifications-as-read', [AdminNotificationController::class, 'markAllNotificationsAsRead'])->name('mark-all-notifications-as-read');
+    Route::patch('mark-all-notifications-as-read', [AdminNotificationController::class, 'markAllNotificationsAsRead'])->name('mark-all-notifications-as-read');
     Route::patch('mark-notification-as-read/{id}', [AdminNotificationController::class, 'markNotificationAsRead'])->name('mark-notification-as-read');
 
     //Projects
@@ -60,6 +61,11 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
         Route::get('create', [AdminProjectIndexController::class, 'create'])->name('create');
         Route::post('store', [AdminprojectIndexController::class, 'store'])->name('store');
         Route::get('/{id}/show', [AdminProjectIndexController::class, 'show'])->name('show');
+        Route::prefix('{id}/tasks')->name('tasks.')->group(function(){
+            Route::get('/', [AdminProjectTaskController::class, 'index'])->name('index');
+            Route::get('/create', [AdminProjectTaskController::class, 'create'])->name('create');
+            Route::put('/store', [AdminProjectTaskController::class, 'store'])->name('store');
+        });
     });
 
     //Settings Routes

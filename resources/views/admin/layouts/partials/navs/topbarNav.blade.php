@@ -64,6 +64,7 @@
                                         <div class="col-md-6 d-flex justify-content-end">
                                             <form action="{{ route('admin.mark-all-notifications-as-read') }}" method="post">
                                                 @csrf
+                                                @method('patch')
                                                 <button type="submit" class="markAllReadButton">Mark all as read</button>
                                             </form>
                                         </div>

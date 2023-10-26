@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('project_name');
             $table->unsignedBigInteger('project_type_id');
             $table->string('project_status');
-            $table->integer('progress')->default(0)->nullable();
+            $table->decimal('progress')->default(0)->nullable();
             $table->string('billing_type');
             $table->decimal('fixed_rate_price', 9, 2)->nullable();
             $table->decimal('rate_per_hour', 9, 2)->nullable();

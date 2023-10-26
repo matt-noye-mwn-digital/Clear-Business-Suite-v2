@@ -15,10 +15,16 @@ class ProjectTask extends Model
         'due_date',
         'priority',
         'description',
-        'project_id'
+        'project_id',
+        'status',
+        'assignee_id'
     ];
 
     public function project(){
         return $this->belongsTo(Project::class);
+    }
+
+    public function assignee(){
+        return $this->belongsTo(User::class);
     }
 }

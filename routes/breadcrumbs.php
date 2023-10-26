@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserNote;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
+use Illuminate\Console\View\Components\Task;
 
 
 Breadcrumbs::for('home', function(BreadcrumbTrail $trail){
@@ -66,6 +67,16 @@ Breadcrumbs::for('admin-projects-create', function(BreadcrumbTrail $trail){
 Breadcrumbs::for('admin-projects-show', function(BreadcrumbTrail $trail, Project $project){
    $trail->parent('admin-projects');
    $trail->push('View ' . $project->project_name, route('admin.projects.show', $project->id));
+});
+
+//Project Tasks
+Breadcrumbs::for('admin-projects-tasks-index', function (BreadcrumbTrail $trail, Project $project) {
+    $trail->parent('admin-projects-show', $project);
+    $trail->push('All ' . $project->project_name . ' tasks', route('admin.projects.tasks.index', $project->id));
+});
+Breadcrumbs::for('admin-projects-tasks-create', function(BreadcrumbTrail $trail, Project $project){
+    $trail->parent('admin-projects-show', $project);
+    $trail->push('Create Task', route('admin.projects.tasks.create', $project->id));
 });
 
 //Admin Settings

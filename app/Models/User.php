@@ -69,4 +69,7 @@ class User extends Authenticatable
     public function UserNote(){
         return $this->hasMany(UserNote::class);
     }
+    public function projectTask(){
+        return $this->hasMany(ProjectTask::class);
+    }
 }

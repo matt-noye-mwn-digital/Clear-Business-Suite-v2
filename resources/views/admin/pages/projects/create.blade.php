@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="">Progress</label>
-                                <input type="number" name="progress" id="progress">
+                                <input type="number" name="progress" id="progress" value="0" step="any">
                                 <x.form-errors fieldName="progress"/>
                             </div>
                         </div>

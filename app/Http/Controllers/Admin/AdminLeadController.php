@@ -26,7 +26,7 @@ class AdminLeadController extends Controller
      */
     public function create()
     {
-        $assignees = User::role(['super admin', 'admin'])->get();
+        $assignees = User::role(['super admin', 'admin', 'staff'])->get();
         $countries = CountryListFacade::getList('en');
         return view('admin.pages.leads.create', compact('assignees', 'countries'));
     }

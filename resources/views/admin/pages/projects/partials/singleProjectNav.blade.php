@@ -4,7 +4,7 @@
             <a href="{{ route('admin.projects.show', $project->id) }}" class="{{ Route::is('admin.projects.show') ? 'active' : '' }}">Overview</a>
         </li>
         <li>
-            <a href="">Tasks</a>
+            <a href="{{ route('admin.projects.tasks.index', ['id' => $project->id]) }}">Tasks</a>
         </li>
         <li><a href="">Milestones</a></li>
         <li><a href="">Notes</a></li>

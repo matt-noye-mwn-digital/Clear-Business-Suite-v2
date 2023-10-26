@@ -29,6 +29,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
+                    <div class="progressBarWrap">
+                        <h2>Project Progress {{ $project->progress }}%</h2>
+                        <div class="progress" role='progressbar' aria-label="Project Progress Bar" aria-valuenow="{{ $project->progress }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar w-{{ $project->progress }}"></div>
+                        </div>
+                    </div>
                     <table class="projectOverviewMainTable w-100">
                         <tbody>
                             <tr>
@@ -47,7 +53,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Billing Type</strong></td>
-                                <td>{{ $project->billing_type }}</td>
+                                <td>{{ str_replace('_', ' ', $project->billing_type) }}</td>
                             </tr>
                             <tr>
                                 <td><strong>Estimated Hours</strong></td>
@@ -103,7 +109,17 @@
                     </h3>
                     {!! $project->description !!}
                 </div>
-                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <div class="projectTasksOverviewWrapper">
+
+                    </div>
+                    <div class="projectBillingOverviewWrapper">
+
+                    </div>
+                    <div class="projectLoggedHoursOverviewWrapper">
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>
