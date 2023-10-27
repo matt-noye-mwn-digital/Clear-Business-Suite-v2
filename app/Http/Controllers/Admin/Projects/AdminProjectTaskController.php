@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\ProjectTask;
 use App\Models\User;
 use App\Notifications\AdminProjectTaskCreatedNotification;
+use App\Notifications\AdminProjectTaskUpdatedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,7 +72,10 @@ class AdminProjectTaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $task = ProjectTask::findOrFail($id);
+
+        return view('admin.pages.projects.tasks.show', compact('project', 'task'));
     }
 
     /**
@@ -79,22 +83,56 @@ class AdminProjectTaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $task = ProjectTask::findOrFail($id);
+        $projects = Project::all();
+        $assignees = User::role(['super admin', 'admin', 'staff'])->get();
+
+        return view('admin.pages.projects.tasks.edit', compact('project', 'task', 'projects', 'assignees'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProjectTaskStoreRequest $request, string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $projectTask = ProjectTask::findOrFail($id);
+        $projectTask = ProjectTask::create([
+            'title' => $request->title,
+            'start_date' => $request->start_date,
+            'due_date' => $request->start_date,
+            'priority' => $request->priority,
+            'description' => $request->description,
+            'project_id' => $request->project_id,
+            'status' => $request->status,
+            'assignee_id' => $request->assignee_id,
+        ]);
+
+        //Setup notification
+        $userNotify = [User::find($projectTask->assignee_id), Auth::user()];
+        foreach ($userNotify as $user) {
+            if ($user) {
+                $user->notify(new AdminProjectTaskUpdatedNotification($project, $projectTask));
+            }
+        }
+
+        //Log in activity log
+        activity()->log(auth()->user()->first_name . ' ' . auth()->user()->last_name . ' has updated task ' . $request->title . ' to project ' . $project->project_name);
+        return redirect('admin/projects/'.$project->id.'/tasks')->with('success', 'Project Task updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id, $taskId)
     {
-        //
+        $project = Project::findOrFail($id);
+        $task = ProjectTask::findOrFail($taskId);
+
+        $task->delete();
+
+        activity()->log(auth()->user()->first_name . ' ' . auth()->user()->last_name . ' has deleted a task');
+        return redirect('admin/projects/'.$project->id.'/tasks')->with('success', 'Project Task deleted successfully');
     }
 }

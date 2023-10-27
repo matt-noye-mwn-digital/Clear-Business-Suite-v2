@@ -65,6 +65,10 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
             Route::get('/', [AdminProjectTaskController::class, 'index'])->name('index');
             Route::get('/create', [AdminProjectTaskController::class, 'create'])->name('create');
             Route::put('/store', [AdminProjectTaskController::class, 'store'])->name('store');
+            Route::get('/show', [AdminProjectTaskController::class, 'show'])->name('show');
+            Route::get('/edit', [AdminProjectTaskController::class, 'edit'])->name('edit');
+            Route::put('/update', [AdminProjectTaskController::class, 'update'])->name('update');
+            Route::delete('/destroy/{taskId}', [AdminProjectTaskController::class, 'destroy'])->name('destroy');
         });
     });
 

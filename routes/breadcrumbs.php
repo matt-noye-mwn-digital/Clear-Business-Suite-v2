@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Project;
+use App\Models\ProjectTask;
 use App\Models\Todo;
 use App\Models\User;
 use App\Models\UserNote;
@@ -77,6 +78,14 @@ Breadcrumbs::for('admin-projects-tasks-index', function (BreadcrumbTrail $trail,
 Breadcrumbs::for('admin-projects-tasks-create', function(BreadcrumbTrail $trail, Project $project){
     $trail->parent('admin-projects-show', $project);
     $trail->push('Create Task', route('admin.projects.tasks.create', $project->id));
+});
+Breadcrumbs::for('admin-projects-tasks-show', function(BreadcrumbTrail $trail, Project $project, ProjectTask $projectTask){
+   $trail->parent('admin-projects-show', $project);
+   $trail->push('View ' . $projectTask->title . ' task', route('admin.projects.tasks.show', [$project->id, $projectTask->id]));
+});
+Breadcrumbs::for('admin-projects-tasks-edit', function(BreadcrumbTrail $trail, Project $project, ProjectTask $projectTask){
+    $trail->parent('admin-projects-show', $project);
+    $trail->push('edit ' . $projectTask->title, route('admin.projects.tasks.update', [$project->id, $projectTask->id]));
 });
 
 //Admin Settings

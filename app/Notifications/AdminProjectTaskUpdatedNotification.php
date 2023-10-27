@@ -7,17 +7,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminProjectTaskCreatedNotification extends Notification
+class AdminProjectTaskUpdatedNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($projectTask, $project)
+    public function __construct($projectTask)
     {
         $this->task = $projectTask;
-        $this->project = $project;
     }
 
     /**
@@ -38,8 +37,8 @@ class AdminProjectTaskCreatedNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => 'A new project task has been added',
-            'message' => auth()->user()->first_name . ' ' . auth()->user()->last_name . ' has created a new task'
+            'title' => 'A project task has been updated',
+            'message' => auth()->user()->first_name . ' ' . auth()->user()->last_name . ' has updated project task ' . $this->task->id
         ];
     }
 }
