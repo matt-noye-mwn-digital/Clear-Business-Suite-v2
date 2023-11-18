@@ -77,7 +77,7 @@ class AdminProjectIndexController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**

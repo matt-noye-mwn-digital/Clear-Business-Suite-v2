@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminTodoController;
 use App\Http\Controllers\Admin\AdminTransactionController;
 use App\Http\Controllers\Admin\AdminUserNoteController;
 use App\Http\Controllers\Admin\Projects\AdminProjectIndexController;
+use App\Http\Controllers\Admin\Projects\AdminProjectMilestoneController;
 use App\Http\Controllers\Admin\Projects\AdminProjectTaskController;
 use App\Http\Controllers\Admin\Settings\AdminSettingsController;
 use App\Http\Controllers\Client\ClientIndexController;
@@ -64,11 +65,20 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
         Route::prefix('{id}/tasks')->name('tasks.')->group(function(){
             Route::get('/', [AdminProjectTaskController::class, 'index'])->name('index');
             Route::get('/create', [AdminProjectTaskController::class, 'create'])->name('create');
-            Route::put('/store', [AdminProjectTaskController::class, 'store'])->name('store');
-            Route::get('/show', [AdminProjectTaskController::class, 'show'])->name('show');
-            Route::get('/edit', [AdminProjectTaskController::class, 'edit'])->name('edit');
-            Route::put('/update', [AdminProjectTaskController::class, 'update'])->name('update');
+            Route::put('/store/{taskId}', [AdminProjectTaskController::class, 'store'])->name('store');
+            Route::get('/show/{taskId}', [AdminProjectTaskController::class, 'show'])->name('show');
+            Route::get('/edit/{taskId}', [AdminProjectTaskController::class, 'edit'])->name('edit');
+            Route::put('/update', [AdminProjectTaskController::class, 'update'])->name('update/{taskId}');
             Route::delete('/destroy/{taskId}', [AdminProjectTaskController::class, 'destroy'])->name('destroy');
+        });
+        Route::prefix('{id}/milestones')->name('milestones.')->group(function(){
+           Route::get('/', [AdminProjectMilestoneController::class, 'index'])->name('index');
+           Route::get('/create', [AdminProjectMilestoneController::class, 'create'])->name('create');
+           Route::put('/store', [AdminProjectMilestoneController::class, 'store'])->name('store');
+           Route::get('/show/{milestoneId}', [AdminprojectMilestoneController::class, 'show'])->name('show');
+           Route::get('/edit/{milestoneId}', [AdminProjectMilestoneController::class, 'edit'])->name('edit');
+           Route::put('/update/{milestoneId}', [AdminprojectMilestoneController::class, 'update'])->name('update');
+           Route::delete('/destroy/{milestoneId}', [AdminProjectMilestoneController::class, 'destroy'])->name('destroy');
         });
     });
 
@@ -99,14 +109,10 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
 });
 
 //Client Routes
-Route::middleware(['auth', 'role:client'])->name('client.')->prefix('client')->group(function(){
+Route::middleware(['auth', 'role:client', 'customer.access'])->name('client.')->prefix('client')->group(function(){
     Route::get('dashboard', [ClientIndexController::class, 'index'])->name('dashboard');
 });
 
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

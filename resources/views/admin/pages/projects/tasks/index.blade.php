@@ -15,6 +15,16 @@
 
     {{ Breadcrumbs::render('admin-projects-tasks-index', $project) }}
 
+    <section class="adminActionBanner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @include('admin.pages.projects.partials.singleProjectNav')
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="pageMain">
         <div class="container">
             <div class="row">
@@ -44,8 +54,8 @@
                                     <td>{!! $task->getPriority() !!}</td>
                                     <td class="actions">
                                         <div class="btn-group">
-                                            <a href="{{ route('admin.projects.tasks.show', $task->id) }}" class="view-btn"><i class="fas fa-eye"></i></a>
-                                            <a href="{{ route('admin.projects.tasks.edit', $task->id) }}" class="edit-btn"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.projects.tasks.show', ['id' => $project->id, 'taskId' => $task->id]) }}" class="view-btn"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('admin.projects.tasks.edit', ['id' => $project->id, 'taskId' => $task->id]) }}" class="edit-btn"><i class="fas fa-edit"></i></a>
                                             <form action="{{ route('admin.projects.tasks.destroy', ['id' => $project->id, 'taskId' => $task->id]) }}" method="POST">
                                                 @csrf
                                                 @method('delete') <!-- Add this hidden field to override the method -->

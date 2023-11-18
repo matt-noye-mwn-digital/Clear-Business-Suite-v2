@@ -70,10 +70,10 @@ class AdminProjectTaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, $taskId)
     {
         $project = Project::findOrFail($id);
-        $task = ProjectTask::findOrFail($id);
+        $task = ProjectTask::findOrFail($taskId);
 
         return view('admin.pages.projects.tasks.show', compact('project', 'task'));
     }
@@ -81,10 +81,10 @@ class AdminProjectTaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id, $taskId)
     {
         $project = Project::findOrFail($id);
-        $task = ProjectTask::findOrFail($id);
+        $task = ProjectTask::findOrFail($taskId);
         $projects = Project::all();
         $assignees = User::role(['super admin', 'admin', 'staff'])->get();
 
@@ -94,11 +94,11 @@ class AdminProjectTaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProjectTaskStoreRequest $request, string $id)
+    public function update(ProjectTaskStoreRequest $request, string $id, $taskId)
     {
         $project = Project::findOrFail($id);
-        $projectTask = ProjectTask::findOrFail($id);
-        $projectTask = ProjectTask::create([
+        $projectTask = ProjectTask::findOrFail($taskId);
+        $projectTask->update([
             'title' => $request->title,
             'start_date' => $request->start_date,
             'due_date' => $request->start_date,

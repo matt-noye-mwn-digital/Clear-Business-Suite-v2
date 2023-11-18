@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('admin.projects.tasks.update', ['id' => $project->id], $task->id) }}" method="post">
+                    <form action="{{ route('admin.projects.tasks.update', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
                         @csrf
                         @method('put')
                         <div class="row">
