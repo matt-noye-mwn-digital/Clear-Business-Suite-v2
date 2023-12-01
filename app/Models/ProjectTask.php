@@ -24,7 +24,7 @@ class ProjectTask extends Model
         return match($this->status) {
             'not_started' => '<span class="badge text-bg-secondary">Not Started</span>',
             'in_progress' => '<span class="badge text-bg-info">In Progress</span>',
-            'testing' => '<span class="badge text-bs-danger">Testing</span>',
+            'testing' => '<span class="badge text-bg-danger">Testing</span>',
             'awaiting_feedback' => '<span class="badge text-bg-warning">Awaiting Feedback</span>',
             'complete' => '<span class="badge text-bg-success">Complete</span>'
         };

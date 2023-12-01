@@ -40,43 +40,66 @@
                             </li>
                             <hr>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.tasks.set-to-not-started-status', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button type="submit">Not Started</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.projects.tasks.set-to-in-progress-status', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
                                     <button type="submit">Mark as In Progress</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.tasks.set-to-testing-status', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
                                     <button type="submit">Mark As Testing</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.tasks.set-to-awaiting-feedback-status', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
                                     <button type="submit">Mark as Awaiting Feedback</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.tasks.set-to-complete-status', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
                                     <button type="submit">Mark as Complete</button>
                                 </form>
                             </li>
                             <hr>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.tasks.set-low-priority', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
                                     <button type="submit">Mark as Low Priority</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.tasks.set-medium-priority', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
                                     <button type="submit">Mark as Medium Priority</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.tasks.set-high-priority', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
                                     <button type="submit">Mark as High Priority</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.tasks.set-urgent-priority', ['id' => $project->id, 'taskId' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
                                     <button type="submit">Mark as Urgent</button>
                                 </form>
                             </li>

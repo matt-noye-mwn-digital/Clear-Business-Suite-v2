@@ -41,28 +41,35 @@
                             </li>
                             <hr>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.milestones.set-to-not-started-status', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button type="submit">Not Started</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.projects.milestones.set-to-in-progress-status', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit">Mark as In Progress</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.milestones.set-to-testing-status', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit">Mark as Testing</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.milestones.set-to-awaiting-feedback-status', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit">Mark as Awaiting Feedback</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.milestones.set-to-complete-status', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit">
@@ -72,28 +79,28 @@
                             </li>
                             <hr>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.milestones.set-low-priority', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit">Mark as Low Priority</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.milestones.set-medium-priority', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit">Mark as Medium Priority</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.milestones.set-high-priority', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit">Mark as High Priority</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="" method="post">
+                                <form action="{{ route('admin.projects.milestones.set-urgent-priority', ['id' => $project->id, 'milestoneId' => $milestone->id]) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit">Mark as Urgent</button>

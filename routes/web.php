@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminTransactionController;
 use App\Http\Controllers\Admin\AdminUserNoteController;
 use App\Http\Controllers\Admin\Projects\AdminProjectIndexController;
 use App\Http\Controllers\Admin\Projects\AdminProjectMilestoneController;
+use App\Http\Controllers\Admin\Projects\AdminProjectNoteController;
 use App\Http\Controllers\Admin\Projects\AdminProjectTaskController;
 use App\Http\Controllers\Admin\Settings\AdminSettingsController;
 use App\Http\Controllers\Client\ClientIndexController;
@@ -70,6 +71,17 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
             Route::get('/edit/{taskId}', [AdminProjectTaskController::class, 'edit'])->name('edit');
             Route::put('/update', [AdminProjectTaskController::class, 'update'])->name('update/{taskId}');
             Route::delete('/destroy/{taskId}', [AdminProjectTaskController::class, 'destroy'])->name('destroy');
+
+            Route::put('/setPriorityToLow/{taskId}', [AdminProjectTaskController::class, 'setPriorityToLow'])->name('set-low-priority');
+            Route::put('/setPriorityToMedium/{taskId}', [AdminProjectTaskController::class, 'setPriorityToMedium'])->name('set-medium-priority');
+            Route::put('/setPriorityToHigh/{taskId}', [AdminProjectTaskController::class, 'setPriorityToHigh'])->name('set-high-priority');
+            Route::put('/setPriorityToUrgent/{taskId}', [AdminProjectTaskController::class, 'setPriorityToUrgent'])->name('set-urgent-priority');
+
+            Route::put('/setStatusToNotStarted/{taskId}', [AdminProjectTaskController::class, 'setStatusToNotStarted'])->name('set-to-not-started-status');
+            Route::put('/setStatusToInProgress/{taskId}', [AdminProjectTaskController::class, 'setStatusToInProgress'])->name('set-to-in-progress-status');
+            Route::put('/setStatusToTesting/{taskId}', [AdminProjectTaskController::class, 'setStatusToTesting'])->name('set-to-testing-status');
+            Route::put('/setStatusToAwaitingFeedback/{taskId}', [AdminProjectTaskController::class, 'setStatusToAwaitingFeedback'])->name('set-to-awaiting-feedback-status');
+            Route::put('/setStatusToComplete/{taskId}', [AdminProjectTaskController::class, 'setStatusToComplete'])->name('set-to-complete-status');
         });
         Route::prefix('{id}/milestones')->name('milestones.')->group(function(){
            Route::get('/', [AdminProjectMilestoneController::class, 'index'])->name('index');
@@ -79,6 +91,21 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
            Route::get('/edit/{milestoneId}', [AdminProjectMilestoneController::class, 'edit'])->name('edit');
            Route::put('/update/{milestoneId}', [AdminprojectMilestoneController::class, 'update'])->name('update');
            Route::delete('/destroy/{milestoneId}', [AdminProjectMilestoneController::class, 'destroy'])->name('destroy');
+
+           Route::put('/setPriorityToLow/{milestoneId}', [AdminProjectMilestoneController::class, 'setPriorityToLow'])->name('set-low-priority');
+            Route::put('/setPriorityToMedium/{milestoneId}', [AdminProjectMilestoneController::class, 'setPriorityToMedium'])->name('set-medium-priority');
+            Route::put('/setPriorityToHigh/{milestoneId}', [AdminProjectMilestoneController::class, 'setPriorityToHigh'])->name('set-high-priority');
+            Route::put('/setPriorityToUrgent/{milestoneId}', [AdminProjectMilestoneController::class, 'setPriorityToUrgent'])->name('set-urgent-priority');
+
+           Route::put('/setStatusToNotStarted/{milestoneId}', [AdminProjectMilestoneController::class, 'setStatusToNotStarted'])->name('set-to-not-started-status');
+            Route::put('/setStatusToInProgress/{milestoneId}', [AdminProjectMilestoneController::class, 'setStatusToInProgress'])->name('set-to-in-progress-status');
+            Route::put('/setStatusToTesting/{milestoneId}', [AdminProjectMilestoneController::class, 'setStatusToTesting'])->name('set-to-testing-status');
+            Route::put('/setStatusToAwaitingFeedback/{milestoneId}', [AdminProjectMilestoneController::class, 'setStatusToAwaitingFeedback'])->name('set-to-awaiting-feedback-status');
+            Route::put('/setStatusToComplete/{milestoneId}', [AdminProjectMilestoneController::class, 'setStatusToComplete'])->name('set-to-complete-status');
+        });
+        Route::prefix('{id}/notes')->name('notes.')->group(function(){
+            Route::get('/', [AdminProjectNoteController::class, 'index'])->name('index');
+
         });
     });
 

@@ -137,6 +137,101 @@ class AdminProjectMilestoneController extends Controller
         return redirect('admin/projects/' . $project->id . '/milestones')->with('success', 'Project Milestone has been updated successfully');
     }
 
+    public function setPriorityToLow(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'priority' => 'low',
+        ]);
+
+        return redirect()->back()->with('success', 'Priority set to low');
+
+    }
+    public function setPriorityToMedium(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'priority' => 'medium',
+        ]);
+
+        return redirect()->back()->with('success', 'Priority set to Medium');
+
+    }
+    public function setPriorityToHigh(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'priority' => 'high',
+        ]);
+
+        return redirect()->back()->with('success', 'Priority set to High');
+
+    }
+    public function setPriorityToUrgent(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'priority' => 'urgent',
+        ]);
+
+        return redirect()->back()->with('success', 'Priority set to Urgent');
+    }
+
+    public function setStatusToNotStarted(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'status' => 'not_started',
+        ]);
+
+        return redirect()->back()->with('success', 'Status set to Not Started');
+    }
+    public function setStatusToInProgress(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'status' => 'in_progress',
+        ]);
+
+        return redirect()->back()->with('success', 'Status set to In Progress');
+    }
+    public function setStatusToTesting(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'status' => 'testing',
+        ]);
+
+        return redirect()->back()->with('success', 'Status set to Testing');
+    }
+    public function setStatusToAwaitingFeedback(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'status' => 'awaiting_feedback',
+        ]);
+
+        return redirect()->back()->with('success', 'Status set to Awaiting Feedback');
+    }
+    public function setStatusToComplete(Request $request, $id, $milestoneId) {
+        $project = Project::findOrFail($id);
+        $milestone = ProjectMilestone::findOrFail($milestoneId);
+
+        $milestone->update([
+            'status' => 'complete',
+        ]);
+
+        return redirect()->back()->with('success', 'Status set to Complete');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
