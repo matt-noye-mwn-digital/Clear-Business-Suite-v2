@@ -262,6 +262,9 @@ header {
                     }
                     .dropdown-menu.notifications-dropdown {
                         background-color: $darkBlue;
+                        height: 450px;
+                        overflow-y: auto;
+                        position: relative;
                         width: 400px;
 
                         li {

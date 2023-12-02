@@ -2,6 +2,7 @@
 
 use App\Models\Project;
 use App\Models\ProjectMilestone;
+use App\Models\ProjectNote;
 use App\Models\ProjectTask;
 use App\Models\Todo;
 use App\Models\User;
@@ -105,6 +106,20 @@ Breadcrumbs::for('admin-projects-milestones-show', function(BreadcrumbTrail $tra
 Breadcrumbs::for('admin-projects-milestones-edit', function(BreadcrumbTrail $trail, Project $project, ProjectMilestone $projectMilestone){
     $trail->parent('admin-projects-milestones-index', $project);
     $trail->push('Edit ' . $projectMilestone->name . ' milestone', route('admin.projects.milestones.edit', [$project->id, $projectMilestone->id]));
+});
+
+//Project Notes
+Breadcrumbs::for('admin-projects-notes-index', function(BreadcrumbTrail $trail, Project $project){
+    $trail->parent('admin-projects-show', $project);
+    $trail->push('All ' .$project->project_name . ' notes', route('admin.projects.notes.index', $project->id));
+});
+Breadcrumbs::for('admin-projects-notes-create', function(BreadcrumbTrail $trail, Project $project){
+    $trail->parent('admin-projects-notes-index', $project);
+    $trail->push('Create Project', route('admin.projects.notes.create', $project->id));
+});
+Breadcrumbs::for('admin-projects-notes-edit', function(BreadcrumbTrail $trail, Project $project, ProjectNote $projectNote){
+    $trail->parent('admin-projects-notes-index', $project);
+    $trail->push('Edit ' . $projectNote->title . ' milestone', route('admin.projects.milestones.edit', [$project->id, $projectNote->id]));
 });
 
 //Admin Settings

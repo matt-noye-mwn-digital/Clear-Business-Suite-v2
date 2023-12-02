@@ -105,7 +105,12 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
         });
         Route::prefix('{id}/notes')->name('notes.')->group(function(){
             Route::get('/', [AdminProjectNoteController::class, 'index'])->name('index');
-
+            Route::get('create', [AdminProjectNoteController::class, 'create'])->name('create');
+            Route::put('store', [AdminProjectNoteController::class, 'store'])->name('store');
+            Route::get('show/{noteId}', [AdminProjectNoteController::class, 'show'])->name('show');
+            Route::get('/edit/{noteId}', [AdminProjectNoteController::class, 'edit'])->name('edit');
+            Route::put('/update/{noteId}', [AdminProjectNoteController::class, 'update'])->name('update');
+            Route::delete('/destroy/{noteId}', [AdminProjectNoteController::class, 'destroy'])->name('destroy');
         });
     });
 

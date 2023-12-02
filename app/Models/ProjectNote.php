@@ -16,6 +16,13 @@ class ProjectNote extends Model
         'project_id'
     ];
 
+    public function getStatus(){
+        return match($this->show_to_client){
+            0 => '<span class="badge text-bg-warning">No</span>',
+            1 => '<span class="badge text-bg-success">Yes</span>'
+        };
+    }
+
     public function project() {
         return $this->belongsTo(Project::class);
     }
