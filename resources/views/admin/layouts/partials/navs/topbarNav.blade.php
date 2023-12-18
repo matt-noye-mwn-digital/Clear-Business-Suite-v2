@@ -28,6 +28,11 @@
                             <li>
                                 <a href="{{ route('admin.projects.create') }}">Create Project</a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.invoices.create') }}">
+                                    Create Invoice
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

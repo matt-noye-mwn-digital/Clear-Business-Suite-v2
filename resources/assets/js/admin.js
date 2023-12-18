@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     //Desktop / large screens only
     if($(window).width() >= 1081) {

@@ -32,6 +32,16 @@ Breadcrumbs::for('admin-clients-show', function(BreadcrumbTrail $trail, User $cl
     $trail->parent('admin-clients');
     $trail->push($client->first_name . ' ' . $client->last_name , route('admin.clients.show', $client->id));
 });
+//Admin Invoices
+Breadcrumbs::for('admin-invoices-index', function(BreadcrumbTrail $trail){
+    $trail->parent('admin-dashboard');
+    $trail->push('Invoices', route('admin.invoices.index'));
+});
+Breadcrumbs::for('admin-invoices-create', function(BreadcrumbTrail $trail){
+    $trail->parent('admin-invoices-index');
+    $trail->push('Create Invoice', route('admin.invoices.create'));
+});
+
 //Admin Leads
 Breadcrumbs::for('admin-leads', function(BreadcrumbTrail $trail){
     $trail->parent('admin-dashboard');

@@ -34,6 +34,37 @@ input.mediumBlueBtn {
         text-decoration: none;
     }
 }
+a.mediumBlueOutlineBtn,
+button.mediumBlueOutlineBtn,
+input.mediumBlueOutlineBtn {
+    background-color: transparent;
+    border: 1px solid $mediumBlue;
+    border-radius: 5px;
+    color: $mediumBlue;
+    font-family: $ralMedium;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    text-align: center;
+    @include transition(all .4s ease-in-out);
+
+    &.btn-lg {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        text-align: center;
+    }
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:disabled{
+        background-color: $mediumBlue;
+        border: 1px solid $mediumBlue;
+        box-shadow: none;
+        color: $w;
+        outline: none;
+        text-decoration: none;
+    }
+}
 a.darkBlueBtn,
 button.darkBlueBtn,
 input.darkBluebtn {
@@ -60,6 +91,38 @@ input.darkBluebtn {
     &:disabled{
         background-color: $mediumBlue;
         border: 0;
+        box-shadow: none;
+        color: $w;
+        outline: none;
+        text-decoration: none;
+    }
+}
+a.darkBlueOutlineBtn,
+button.darkBlueOutlineBtn,
+input.darkBlueOutlineBtn {
+    background-color: transparent;
+    border: 1px solid $darkBlue;
+    border-radius: 5px;
+    color: $darkBlue;
+    font-family: $ralMedium;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    @include transition(all .4s ease-in-out);
+
+    &.btn-lg {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        text-align: center;
+    }
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:disabled{
+        background-color: $darkBlue;
+        border: 1px solid $darkBlue;
         box-shadow: none;
         color: $w;
         outline: none;

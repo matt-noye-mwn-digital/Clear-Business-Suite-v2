@@ -1,0 +1,44 @@
+.adminDashboard {
+    background-color: transparent;
+    padding: 0;
+
+    .dashboardSmallBox {
+        align-items: center;
+        background-color: $w;
+        border: 0;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 30px;
+        padding: 2rem;
+        text-align: center;
+
+        h4 {
+            color: $mediumBlue;
+            font-family: $ralSemiBold;
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        h5 {
+            color: $darkBlue;
+            font-family: $ralBold;
+            font-size: 1.5rem;
+        }
+    }
+    .dashboardFullBox {
+        background-color: $w;
+        border: 0;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        padding: 2rem;
+
+        h4 {
+            color: $darkBlue;
+            font-family: $ralBold;
+            font-size: 1.5rem;
+            margin-bottom: 30px
+        }
+    }
+}

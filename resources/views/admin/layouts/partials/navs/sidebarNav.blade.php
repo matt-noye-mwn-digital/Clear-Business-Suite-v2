@@ -1,6 +1,6 @@
     <ul class="sidebarNav">
         <li>
-            <a href="">Dashboard</a>
+            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,13 +23,33 @@
                 <li>
                     <a href="{{ route('admin.leads.index') }}">All Leads</a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.leads.create') }}">Create Lead</a>
+                </li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Billing
+                Billing/Sales
             </a>
             <ul class="dropdown-menu">
+                <li>
+                    <a href="">Billable Items</a>
+                </li>
+                <li>
+                    <a href="">Expenses</a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.invoices.index') }}">Invoices</a>
+                </li>
+                <li>
+                    <a href="">Proposals</a>
+                </li>
+                <li>
+                    <a href="">
+                        Quotes
+                    </a>
+                </li>
                 <li>
                     <a href="{{ route('admin.transactions.index') }}">Transactions</a>
                 </li>
@@ -49,9 +69,34 @@
             </ul>
         </li>
         <li class="dropdown">
+            <a href="" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Contracts
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">All Contracts</a>
+                </li>
+                <li>
+                    <a href="">Create Contract</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Support
             </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">All Support Tickets</a>
+                </li>
+                <li>
+                    <a href="">Create Support Ticket</a>
+                </li>
+
+                <li>
+                    <a href="">Knowledge base</a>
+                </li>
+            </ul>
         </li>
         @role(['super admin', 'admin'])
             <li>

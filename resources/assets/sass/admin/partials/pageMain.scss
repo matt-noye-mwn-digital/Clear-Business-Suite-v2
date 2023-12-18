@@ -45,7 +45,13 @@
                 text-decoration: none;
 
             }
+            &:disabled,
+            &[readonly]{
+                background-color: $lightGrey;
+                cursor: default;
+            }
         }
+
         .checkbox-group-single {
             display: flex;
             flex-direction: row;
@@ -54,6 +60,39 @@
             label {
                 margin-bottom: 0;
                 margin-left: 5px;
+            }
+        }
+
+        table.invoiceCreationTotalsTable {
+            tr {
+                vertical-align: middle;
+
+                strong {
+                    color: $darkBlue;
+                    font-family: $ralMedium;
+                    font-size: 1.1rem;
+                }
+            }
+            .input-group {
+                border-radius: 10px;
+                display: flex;
+                flex-direction: row;
+
+                input {
+                    border-right: 0;
+                    display: inline-block;
+                    width: 85%;
+                }
+                .input-group-text {
+                    background-color: transparent;
+                    border: 1px solid $darkBlue;
+                    border-left: 0;
+                    border-bottom-right-radius: 5px !important;
+                    border-top-right-radius: 5px !important;
+                    color: $darkBlue;
+                    font-size: 1rem;
+                    font-weight: bold;
+                }
             }
         }
     }
@@ -213,6 +252,27 @@
                     }
                 }
             }
+        }
+    }
+
+    .floatingInvoiceFormButtons {
+        background-color: $w;
+        bottom: 0;
+        box-shadow: -2px -8px 12px -16px rgba(0,0,0,0.5);
+        -webkit-box-shadow: -2px -8px 12px -16px rgba(0,0,0,0.5);
+        -moz-box-shadow: -2px -8px 12px -16px rgba(0,0,0,0.5);
+
+        padding: .5rem 3.5rem;
+        position: fixed;
+        right: 0;
+        width: 100%;
+        z-index: 1050;
+
+        .row {
+            margin-bottom: 0;
+        }
+        .btn-group {
+            gap: 20px;
         }
     }
 }

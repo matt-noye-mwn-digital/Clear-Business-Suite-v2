@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invoice;
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminIndexController extends Controller
@@ -12,7 +15,14 @@ class AdminIndexController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.dashboard');
+        $unpaidInvoicesCount = Invoice::where('status', 'unpaid')->count();
+        $clientsCount = User::role('client')->count();
+        $leadCount = User::role('lead')->count();
+        $projectCount = Project::where('project_status', '<>', 'completed')
+            ->where('project_status', '<>', 'cancelled')
+            ->count();
+
+        return view('admin.pages.dashboard', compact('unpaidInvoicesCount', 'clientsCount', 'leadCount', 'projectCount'));
     }
 
     /**
