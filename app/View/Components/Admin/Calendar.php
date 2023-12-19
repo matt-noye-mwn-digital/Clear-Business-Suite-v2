@@ -24,6 +24,7 @@ class Calendar extends Component
             $this->events[] = [
                 'title' => $project->project_name,
                 'start' => $project->start_date,
+                'end' => $project->due_date,
                 'url' => route('admin.projects.show', $project->id),
                 'color' => '#60a3d9'
             ];

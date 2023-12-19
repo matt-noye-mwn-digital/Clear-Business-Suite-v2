@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Invoice;
 use App\Models\Project;
 use App\Models\ProjectMilestone;
 use App\Models\ProjectNote;
@@ -41,6 +42,15 @@ Breadcrumbs::for('admin-invoices-create', function(BreadcrumbTrail $trail){
     $trail->parent('admin-invoices-index');
     $trail->push('Create Invoice', route('admin.invoices.create'));
 });
+Breadcrumbs::for('admin-invoices-edit', function(BreadcrumbTrail $trail, Invoice $invoice){
+    $trail->parent('admin-invoices-index');
+    $trail->push('Edit Invoice ' . $invoice->invoice_number, route('admin.invoices.edit', $invoice->id));
+});
+Breadcrumbs::for('admin-invoices-add-payment', function(BreadcrumbTrail $trail, Invoice $invoice){
+    $trail->parent('admin-invoices-index');
+    $trail->push('Add Payment to Invoice ' . $invoice->invoice_number, route('admin.invoices.add-payment-view', $invoice->id));
+});
+
 
 //Admin Leads
 Breadcrumbs::for('admin-leads', function(BreadcrumbTrail $trail){

@@ -6,7 +6,7 @@ input.lightBlueBtn {
 a.mediumBlueBtn,
 button.mediumBlueBtn,
 input.mediumBlueBtn {
-    background-color: $mediumBlue;
+    background-color: $mediumBlue !important;
     border: 0;
     border-radius: 5px;
     color: $w;
@@ -26,7 +26,7 @@ input.mediumBlueBtn {
     &:focus,
     &.active,
     &:disabled{
-        background-color: $lightBlue;
+        background-color: $lightBlue !important;
         border: 0;
         box-shadow: none;
         color: $w;

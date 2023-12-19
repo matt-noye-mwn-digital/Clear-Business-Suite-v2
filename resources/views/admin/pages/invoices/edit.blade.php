@@ -12,7 +12,9 @@
         buttonLink="{{ route('admin.invoices.index') }}"
     />
 
-    {{ Breadcrumbs::render('admin-invoices-create') }}
+    {{ Breadcrumbs::render('admin-invoices-edit', $invoice) }}
+
+    @include('admin.pages.invoices.singleInvoiceNav')
 
     <x-admin.errors/>
 

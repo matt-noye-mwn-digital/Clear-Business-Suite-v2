@@ -20,4 +20,22 @@ $(document).ready(function(){
 
     }
 
+    $('.addPaymentBtn').click(function(event){
+        event.preventDefault();
+        if($(this).hasClass('disabled')){
+            Swal.fire({
+                title: 'oops!',
+                text: 'This invoice needs to be published before you can add a payment',
+                icon: 'warning',
+                confirmButtonText: 'ok',
+                buttonStyling: false,
+                customClass: {
+                    confirmButton: 'mediumBlueBtn'
+                }
+            });
+        }
+        else {
+            console.log('button pressed');
+        }
+    })
 });

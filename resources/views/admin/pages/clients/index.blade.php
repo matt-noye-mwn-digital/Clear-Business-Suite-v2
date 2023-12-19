@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-hover clickableTable">
+                    <table class="table w-100 table-hover clickableTable">
                         <thead>
                             <tr>
                                 <th>ID</th>

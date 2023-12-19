@@ -63,6 +63,21 @@
             }
         }
 
+        .invoicePaymentSendConfirmationEmailCheckboxGroup {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            span {
+                color: $darkBlue;
+                font-family: $ralMedium;
+                font-size: 1rem;
+            }
+            input[type='checkbox'] {
+                margin-right: 10px;
+                margin-left: auto;
+            }
+        }
+
         table.invoiceCreationTotalsTable {
             tr {
                 vertical-align: middle;

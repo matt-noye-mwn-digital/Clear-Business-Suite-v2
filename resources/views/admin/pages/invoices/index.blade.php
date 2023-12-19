@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <table class="table w-100 table-hover">
+                    <table class="table w-100 table-hover clickableTable">
                         <thead>
                             <tr>
                                 <th>Invoice #</th>
@@ -28,12 +28,12 @@
                                 <th>Total</th>
                                 <th>Payment Method</th>
                                 <th>Status</th>
-                                <th class="actions">Actions</th>
+                                {{--<th class="actions">Actions</th>--}}
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($invoices as $invoice)
-                                <tr>
+                                <tr onclick="window.location.href='{{ route('admin.invoices.edit', $invoice->id) }}'">
                                     <td>{{ $invoice->invoice_number }}</td>
                                     <td>{{ $invoice->client->first_name }} {{ $invoice->client->last_name }}</td>
                                     <td>{{ date('d/m/Y', strtotime($invoice->invoice_date)) }}</td>
@@ -47,9 +47,8 @@
                                     </td>
                                     <td>{{ $invoice->payment_method }}</td>
                                     <td>{!! $invoice->getStatus() !!}</td>
-                                    <td class="actions">
+                                    {{--<td class="actions">
                                         <div class="btn-group">
-                                            <a href="" class="view-btn"><i class="fas fa-eye"></i></a>
                                             <a href="{{ route('admin.invoices.edit', $invoice->id) }}" class="edit-btn"><i class="fas fa-edit"></i></a>
                                             <form action="" method="POST">
                                                 @csrf
@@ -58,7 +57,7 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    </td>
+                                    </td>--}}
                                 </tr>
                             @endforeach
                         </tbody>

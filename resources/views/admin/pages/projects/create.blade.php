@@ -45,7 +45,7 @@
                                 <select name="client_id" id="client_id">
                                     <option selected disabled>-- Choose a client --</option>
                                     @foreach($clients as $client)
-                                        <option value="{{ $client->id }}">{{ $client->first_name }} {{ $client->last_name }} @if($client->userDetails->company_name)- {{ $client->userDetails->company_name }}@endif</option>
+                                        <option value="{{ $client->id }}">{{ $client->first_name }} {{ $client->last_name }} @if($client->userDetail)- {{ $client->userDetails->company_name }}@endif</option>
                                     @endforeach
                                 </select>
                                 <x.form-errors fieldName="client_id"/>

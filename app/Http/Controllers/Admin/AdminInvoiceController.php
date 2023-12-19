@@ -7,7 +7,9 @@ use App\Http\Requests\Admin\InvoiceStoreRequest;
 use App\Models\Invoice;
 use App\Models\InvoiceLineItem;
 use App\Models\PaymentMethod;
+use App\Models\Transaction;
 use App\Models\User;
+use App\Notifications\AdminInvoicePaymentAddedNotification;
 use App\Notifications\AdminInvoiceSavedAndPublishedNotification;
 use App\Notifications\AdminInvoiceSavedNotification;
 use App\Notifications\ClientInvoiceNotification;
@@ -176,6 +178,52 @@ class AdminInvoiceController extends Controller
 
         }
 
+    }
+
+    public function invoiceAddPaymentView($id){
+        $invoice = Invoice::findOrFail($id);
+        $paymentMethods = PaymentMethod::orderBy('name', 'desc')->get();
+        return view('admin.pages.invoices.add-payment', compact('invoice', 'paymentMethods'));
+    }
+
+    public function invoiceAddPaymentStore(Request $request, $id) {
+        $invoice = Invoice::findOrFail($id);
+        $validated = $request->validate([
+           'date_time' => ['required', 'date'],
+            'payment_method' => ['required', 'string'],
+            'amount_in' => ['required', 'numeric'],
+            'fees' => ['required', 'numeric'],
+            'transaction_id' => ['required']
+        ]);
+
+        Transaction::create([
+            'date_time' => $validated['date_time'],
+            'payment_method' => $validated['payment_method'],
+            'description' => 'Invoice ' .$invoice->invoice_number . ' has been marked as paid',
+            'amount_in' => $validated['amount_in'],
+            'fees' => $validated['fees'],
+            'transaction_id' => $validated['transaction_id'],
+            'invoice_id' => $invoice->id
+        ]);
+
+        $invoice->update([
+            'status' => 'paid'
+        ]);
+
+        if($request->has('send_confirmation_email')){
+
+        }
+
+        //Setup notification to admin
+        $adminRoles = ['super admin', 'admin', 'staff'];
+        $adminUsers = User::role($adminRoles)->get();
+
+        foreach ($adminUsers as $adminUser) {
+            $adminUser->notify(new AdminInvoicePaymentAddedNotification($invoice));
+        }
+
+        activity()->log(auth()->user()->first_name . ' ' . auth()->user()->last_name . ' has marked invoice ' . $invoice->invoice_number . ' as paid and added a transaction');
+        return redirect('admin/invoices')->with('success', 'Invoice has been marked as paid');
     }
 
     /**
