@@ -77,8 +77,6 @@ class AdminInvoiceController extends Controller
         return $total;
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      */
@@ -177,7 +175,6 @@ class AdminInvoiceController extends Controller
         elseif($action == 'publish_and_record_payment'){
 
         }
-
     }
 
     public function invoiceAddPaymentView($id){
@@ -231,7 +228,9 @@ class AdminInvoiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+
+        return view('admin.pages.invoices.show', compact('invoice'));
     }
 
     /**

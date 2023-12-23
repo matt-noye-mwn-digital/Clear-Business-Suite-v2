@@ -30,6 +30,10 @@ class Invoice extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function transaction(){
+        return $this->hasMany(Transaction::class);
+    }
+
     public function getStatus() {
         return match($this->status){
             'draft' => '<span class="badge text-bg-secondary">Draft</span>',

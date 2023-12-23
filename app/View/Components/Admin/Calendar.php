@@ -31,7 +31,7 @@ class Calendar extends Component
         }
         foreach($invoices as $invoice){
             $this->events[] = [
-                'title' => 'Invoice: ' . $invoice->invoice_number,
+                'title' => 'Invoice: ' . $invoice->invoice_number . ' - ' . $invoice->status,
                 'start' => $invoice->due_date,
                 'url' => route('admin.invoices.show', $invoice->id),
                 'color' => '#0074b7'

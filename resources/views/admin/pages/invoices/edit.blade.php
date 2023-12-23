@@ -79,7 +79,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <table class="table w-full invoiceItemsTable" id="lineItemsTable">
+                                <table class="table w-100 invoiceItemsTable" id="lineItemsTable">
                                     <thead style="background-color: #003b73;">
                                     <tr>
                                         <th style="background-color: #003b73; color: #fff; font-size: 18px; font-weight: bold;">Description</th>
