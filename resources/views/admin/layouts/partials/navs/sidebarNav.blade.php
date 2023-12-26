@@ -37,7 +37,7 @@
                     <a href="">Billable Items</a>
                 </li>
                 <li>
-                    <a href="">Expenses</a>
+                    <a href="{{ route('admin.expenses.index') }}">Expenses</a>
                 </li>
                 <li>
                     <a href="{{ route('admin.invoices.index') }}">Invoices</a>

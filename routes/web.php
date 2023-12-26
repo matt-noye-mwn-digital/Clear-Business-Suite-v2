@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminActivityLogController;
 use App\Http\Controllers\Admin\AdminClientController;
+use App\Http\Controllers\Admin\AdminExpenseController;
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminInvoiceController;
 use App\Http\Controllers\Admin\AdminLeadController;
@@ -46,6 +47,12 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
     Route::resource('clients', AdminClientController::class);
     Route::prefix('clients')->name('clients.')->group(function(){
 
+    });
+
+    //Expenses
+    Route::prefix('expenses')->name('expenses.')->group(function(){
+        Route::get('/', [AdminExpenseController::class, 'index'])->name('index');
+        Route::get('create', [AdminExpenseController::class, 'create'])->name('create');
     });
 
     //Invoice Routes

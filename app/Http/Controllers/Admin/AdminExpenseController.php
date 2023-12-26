@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
+use App\Models\Expense;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
 class AdminExpenseController extends Controller
@@ -12,7 +15,9 @@ class AdminExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $expenses = Expense::orderBy('expense_date', 'asc')
+            ->get();
+        return view('admin.pages.expenses.index', compact('expenses'));
     }
 
     /**
@@ -20,7 +25,9 @@ class AdminExpenseController extends Controller
      */
     public function create()
     {
-        //
+        $currencies = Currency::all();
+        $paymentMethods = PaymentMethod::all();
+        return view('admin.pages.expenses.create', compact('currencies', 'paymentMethods'));
     }
 
     /**
