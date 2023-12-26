@@ -253,6 +253,77 @@ class AdminInvoiceController extends Controller
         //
     }
 
+    public function markInvoiceAsDraft(Request $request, $id){
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->update([
+            'status' => 'draft'
+        ]);
+
+        return redirect()->back()->with('success', 'Invoice marked as draft successfully');
+    }
+    public function markInvoiceAsUnpaid(Request $request, $id) {
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->update([
+            'status' => 'unpaid'
+        ]);
+
+        return redirect()->back()->with('success', 'Invoice marked as unpaid successfully');
+    }
+    public function markInvoiceAsCancelled(Request $request, $id) {
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->update([
+            'status' => 'cancelled',
+        ]);
+
+        return redirect()->back()->with('success', 'Invoice marked as cancelled successfully');
+    }
+    public function markInvoiceAsPaid(Request $request, $id) {
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->update([
+            'status' => 'paid'
+        ]);
+
+        //Setup admin & customer notification
+
+        //Setup customer invoice paid email
+
+        return redirect()->back()->with('success', 'Invoice marked as paid successfully');
+    }
+    public function markInvoiceAsRefunded(Request $request, $id) {
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->update([
+            'status' => 'refunded',
+        ]);
+
+        //setup admin & customer notification
+
+        //Setup customer email
+
+        return redirect()->back()->with('success', 'Invoice marked as refunded successfully');
+    }
+    public function markInvoiceAsCollections(Request $request, $id) {
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->update([
+            'status' => 'collections'
+        ]);
+
+        return redirect()->back()->with('success', 'Invoice marked as collections successfully');
+    }
+    public function markInvoiceAsPaymentPending(Request $request, $id) {
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->update([
+            'status' => 'payment_pending',
+        ]);
+
+        return redirect()->back()->with('success', 'Invoice marked as Payment Pending successfully');
+    }
     /**
      * Remove the specified resource from storage.
      */

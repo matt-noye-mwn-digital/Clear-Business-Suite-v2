@@ -59,6 +59,16 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
         //Add Payment
         Route::get('add-payment/{id}', [AdminInvoiceController::class, 'invoiceAddPaymentView'])->name('add-payment-view');
         Route::put('add-payment-store/{id}', [AdminInvoiceController::class, 'invoiceAddPaymentStore'])->name('add-payment-store');
+
+        //Mark as statuses
+        Route::put('mark-as-draft/{id}', [AdminInvoiceController::class, 'markInvoiceAsDraft'])->name('mark-as-draft');
+        Route::put('mark-as-unpaid/{id}', [AdminInvoiceController::class, 'markInvoiceAsUnpaid'])->name('mark-as-unpaid');
+        Route::put('mark-as-cancelled/{id}', [AdminInvoiceController::class, 'markInvoiceAsCancelled'])->name('mark-as-cancelled');
+        Route::put('mark-as-paid/{id}', [AdminInvoiceController::class, 'markInvoiceAsPaid'])->name('mark-as-paid');
+        Route::put('mark-as-refunded/{id}', [AdminInvoiceController::class, 'markInvoiceAsRefunded'])->name('mark-as-refunded');
+        Route::put('mark-as-collections/{id}', [AdminInvoiceController::class, 'markInvoiceAsCollections'])->name('mark-as-collections');
+        Route::put('mark-as-pending/{id}', [AdminInvoiceController::class, 'markInvoiceAsPaymentPending'])->name('mark-as-pending');
+
     });
 
     //Lead Routes

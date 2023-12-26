@@ -66,12 +66,16 @@
                     li {
 
                         margin-bottom: 10px;
-                        a {
+                        a,button  {
                             background-color: transparent;
+                            border: 0;
+                            box-shadow: none;
+                            color: $darkBlue;
                             display: block;
                             font-family: $ralReg;
                             font-size: 1rem;
-
+                            padding: 0;
+                            text-align: left;
                             text-decoration: none;
                             @include transition(all .4s ease-in-out);
                             width: 100%;

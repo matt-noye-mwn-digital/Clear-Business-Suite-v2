@@ -3,33 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Invoice;
-use App\Models\Project;
-use App\Models\Todo;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminIndexController extends Controller
+class AdminExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $unpaidInvoicesCount = Invoice::where('status', 'unpaid')->count();
-        $clientsCount = User::role('client')->count();
-        $leadCount = User::role('lead')->count();
-        $projectCount = Project::where('project_status', '<>', 'completed')
-            ->where('project_status', '<>', 'cancelled')
-            ->count();
-
-        $todoList = Todo::where('status', '!=', 'compeleted')
-            ->where('user_id', auth()->user()->id)
-            ->orderBy('due_date', 'asc')
-            ->get();
-
-
-        return view('admin.pages.dashboard', compact('unpaidInvoicesCount', 'clientsCount', 'leadCount', 'projectCount', 'todoList'));
+        //
     }
 
     /**

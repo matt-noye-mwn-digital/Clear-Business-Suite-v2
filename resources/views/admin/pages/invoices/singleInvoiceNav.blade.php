@@ -9,34 +9,62 @@
                     <li>
                         <a href="{{ route('admin.invoices.edit', $invoice->id) }}" class="{{ Route::is('admin.invoices.edit') ? 'active' : '' }}">Summary</a>
                     </li>
-                    <li>
-                        <a class="addPaymentBtn @if($invoice->status != 'unpaid' || $invoice->status != 'collections' || $invoice->status != 'payment_pending') disabled @endif" href="{{ route('admin.invoices.add-payment-view', $invoice->id) }} {{ Route::is('admin.invoices.add-payment-view', $invoice->id) ? 'active' : '' }}" >Add Payment</a>
-                    </li>
+                    @if($invoice->status != 'paid')
+                        <li>
+                            <a class="addPaymentBtn @if($invoice->status != 'unpaid' || $invoice->status != 'collections' || $invoice->status != 'payment_pending') disabled @endif" href="{{ route('admin.invoices.add-payment-view', $invoice->id) }} {{ Route::is('admin.invoices.add-payment-view', $invoice->id) ? 'active' : '' }}" >Add Payment</a>
+                        </li>
+                    @endif
                     <li class="dropdown">
                         <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More</a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a href="">Mark as Draft</a>
+                                <form action="{{ route('admin.invoices.mark-as-draft', $invoice->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Mark as Draft</button>
+                                </form>
                             </li>
                             <li>
-                                <a href="">Mark as Unpaid</a>
+                                <form action="{{ route('admin.invoices.mark-as-unpaid', $invoice->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Mark as Unpaid</button>
+                                </form>
                             </li>
                             <li>
-                                <a href="">Mark as Paid</a>
+                                <form action="{{ route('admin.invoices.mark-as-paid', $invoice->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Mark as Paid</button>
+                                </form>
                             </li>
                             <li>
-                                <a href="">Mark as Cancelled </a>
+                                <form action="{{ route('admin.invoices.mark-as-cancelled', $invoice->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Mark as Cancelled</button>
+                                </form>
                             </li>
                             <li>
-                                <a href="">Mark as Refunded</a>
+                                <form action="{{ route('admin.invoices.mark-as-refunded', $invoice->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Mark as Refunded</button>
+                                </form>
                             </li>
                             <li>
-                                <a href="">Mark as Collections</a>
+                                <form action="{{ route('admin.invoices.mark-as-collections', $invoice->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Mark as Collections</button>
+                                </form>
                             </li>
                             <li>
-                                <a href="">
-                                    Mark as Payment Pending
-                                </a>
+                                <form action="{{ route('admin.invoices.mark-as-pending', $invoice->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Mark as Pending</button>
+                                </form>
                             </li>
                             <hr>
                         </ul>
