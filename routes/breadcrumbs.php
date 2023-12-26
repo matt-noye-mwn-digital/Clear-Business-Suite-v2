@@ -1,13 +1,5 @@
 <?php
 
-use App\Models\Invoice;
-use App\Models\Project;
-use App\Models\ProjectMilestone;
-use App\Models\ProjectNote;
-use App\Models\ProjectTask;
-use App\Models\Todo;
-use App\Models\User;
-use App\Models\UserNote;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 use Illuminate\Console\View\Components\Task;
@@ -17,44 +9,40 @@ Breadcrumbs::for('home', function(BreadcrumbTrail $trail){
     $trail->push('Home', route('home'));
 });
 //Admin dashboard
-Breadcrumbs::for('admin-dashboard', function(BreadcrumbTrail $trail){
-    $trail->push("Admin Dashboard", route('admin.dashboard'));
-});
+include('breadcrumbs/admin/admin-dashboard.php');
+
 //Admin Clients
-include('breadcrumbs/clients.php');
+include('breadcrumbs/admin/clients.php');
 
 //Admin Expenses
-include('breadcrumbs/expenses.php');
+include('breadcrumbs/admin/expenses.php');
 
 //Admin Invoices
-include('breadcrumbs/invoices.php');
+include('breadcrumbs/admin/invoices.php');
 
 //Admin Leads
-include('breadcrumbs/leads.php');
+include('breadcrumbs/admin/leads.php');
 
 //Admin Notes
-include('breadcrumbs/notes.php');
+include('breadcrumbs/admin/notes.php');
 
 //Admin Projects
-include('breadcrumbs/projects/projects.php');
+include('breadcrumbs/admin/projects/projects.php');
 
 //Project Tasks
-include('breadcrumbs/projects/project-tasks.php');
+include('breadcrumbs/admin/projects/project-tasks.php');
 
 //Project Milestones
-include('breadcrumbs/projects/project-milestones.php');
+include('breadcrumbs/admin/projects/project-milestones.php');
 
 //Project Notes
-include('breadcrumbs/projects/project-notes.php');
+include('breadcrumbs/admin/projects/project-notes.php');
 
 //Admin Settings
-include('breadcrumbs/settings/settings.php');
+include('breadcrumbs/admin/settings/settings.php');
 
 //Admin Todos
-include('breadcrumbs/admin-todos.php');
+include('breadcrumbs/admin/admin-todos.php');
 
 //Activity Log
-Breadcrumbs::for('admin-activity-log', function(BreadcrumbTrail $trail){
-    $trail->parent('admin-dashboard');
-    $trail->push('Activity Log', route('admin.activity-log.index'));
-});
+include('breadcrumbs/admin/activity-log.php');
