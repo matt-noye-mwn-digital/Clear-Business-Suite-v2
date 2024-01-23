@@ -53,6 +53,11 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
     Route::prefix('expenses')->name('expenses.')->group(function(){
         Route::get('/', [AdminExpenseController::class, 'index'])->name('index');
         Route::get('create', [AdminExpenseController::class, 'create'])->name('create');
+        Route::post('store', [AdminExpenseController::class,'store'])->name('store');
+        Route::get('show/{id}', [AdminExpenseController::class, 'show'])->name('show');
+        Route::get('edit/{id}', [AdminExpenseController::class,'edit'])->name('edit');
+        Route::put('update/{id}', [AdminExpenseController::class, 'update'])->name('update');
+        Route::delete('destroy/{id}', [AdminExpenseController::class, 'destroy'])->name('destroy');
     });
 
     //Invoice Routes

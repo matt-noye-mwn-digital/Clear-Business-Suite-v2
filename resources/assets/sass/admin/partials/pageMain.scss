@@ -52,6 +52,31 @@
             }
         }
 
+        .input-group-amount {
+            display: flex;
+            flex-direction: row;
+            .input-group-text {
+                background-color: transparent;
+                border: 1px solid $darkBlue;
+                border-right: 0;
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+                box-shadow: none;
+                color: $darkBlue;
+                font-family: $ralBold;
+                font-size: 1rem;
+                text-align: center;
+            }
+            select.input-group-text {
+                width: 75px;
+            }
+            input {
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+                border-left: 0;
+            }
+        }
+
         .checkbox-group-single {
             display: flex;
             flex-direction: row;

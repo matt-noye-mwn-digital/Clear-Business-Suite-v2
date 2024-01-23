@@ -75,8 +75,10 @@ class User extends Authenticatable
     public function projectMilestone(){
         return $this->hasMany(ProjectMilestone::class);
     }
-
     public function invoice(){
         return $this->hasMany(Invoice::class);
+    }
+    public function expense(){
+        return $this->hasMany(Expense::class);
     }
 }

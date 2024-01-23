@@ -22,4 +22,11 @@ class Expense extends Model
         'expense_type',
         'receipt',
     ];
+
+    public function client(){
+        return $this->belongsTo(User::class, 'client_id');
+    }
+    public function paymentMethod(){
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id');
+    }
 }
