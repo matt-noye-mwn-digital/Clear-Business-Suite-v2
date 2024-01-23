@@ -67,6 +67,7 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
         Route::post('store', [AdminInvoiceController::class, 'store'])->name('store');
         Route::get('show/{id}', [AdminInvoiceController::class, 'show'])->name('show');
         Route::get('edit/{id}', [AdminInvoiceController::class, 'edit'])->name('edit');
+        Route::put('update/{id}', [AdmininvoiceController::class, 'update'])->name('update');
 
         //Add Payment
         Route::get('add-payment/{id}', [AdminInvoiceController::class, 'invoiceAddPaymentView'])->name('add-payment-view');

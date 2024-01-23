@@ -22,8 +22,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('admin.invoices.store') }}" method="post">
+                    <form action="{{ route('admin.invoices.update', $invoice->id) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-12">
                                 <label for="">Client *</label>
@@ -97,7 +98,7 @@
                                             <td>
                                                 <form action="" method="post">
                                                     @csrf
-                                                    @method('destroy')
+
                                                     <button class="btn btn-danger ms-auto d-block"><i class="fas fa-minus"></i></button>
                                                 </form>
                                             </td>

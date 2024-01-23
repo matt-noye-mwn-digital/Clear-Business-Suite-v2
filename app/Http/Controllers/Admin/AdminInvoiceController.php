@@ -250,7 +250,102 @@ class AdminInvoiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+
+
+        $action = $request->input('submit_type');
+
+        $lineItems = $request->input('lineItems', []);
+        $lineItemsTotal = $this->calculateLineItemsTotal($request->input('lineItems', []));
+
+        $taxAmount = $request->input('tax_amount', 0);
+
+        $invoiceDiscount = $request->input('invoice_discount', 0);
+
+        $totalAmount = $lineItemsTotal + $taxAmount - $invoiceDiscount;
+
+        if($action == 'save'){
+            $invoice->update([
+                'invoice_date' => $request->invoice_date,
+                'due_date' => $request->due_date,
+                'payment_method' => $request->payment_method,
+                'status' => 'draft',
+                'invoice_discount' => $request->invoice_discount,
+                'tax_amount' => $taxAmount,
+                'sub_total' => $lineItemsTotal,
+                'total' => $totalAmount,
+            ]);
+
+            foreach($request->input('lineItems', []) as $lineItemData){
+                $lineItem = new InvoiceLineItem([
+                    'description' => $lineItemData['description'],
+                    'quantity' => $lineItemData['quantity'],
+                    'amount' => $lineItemData['amount'],
+                    'invoice_id' => $invoice->id
+                ]);
+
+                $invoice->invoiceLineItem()->updateOrCreate([
+                    'description' => $lineItemData['description'],
+                    'quantity' => $lineItemData['quantity'],
+                    'amount' => $lineItemData['amount'],
+                ], $lineItem->toArray());
+            }
+
+            //Setup the notification for admin
+            $adminRoles = ['super admin', 'admin', 'staff'];
+            $adminUsers = User::role($adminRoles)->get();
+
+            foreach ($adminUsers as $adminUser) {
+                $adminUser->notify(new AdminInvoiceSavedNotification($invoice));
+            }
+
+            return redirect('admin/invoices/edit/' .$invoice->id)->with('success', 'New invoice created successfully');
+        }
+        elseif($action == 'publish_and_send'){
+            $invoice = Invoice::create([
+                'client_id' => $request->client_id,
+                'invoice_date' => $request->invoice_date,
+                'due_date' => $request->due_date,
+                'invoice_number' => $invoiceNumber,
+                'payment_method' => $request->payment_method,
+                'status' => 'unpaid',
+                'invoice_discount' => $request->invoice_discount,
+                'tax_amount' => $taxAmount,
+                'sub_total' => $lineItemsTotal,
+                'total' => $totalAmount,
+            ]);
+
+            foreach($request->input('lineItems', []) as $lineItemData){
+                $lineItem = new InvoiceLineItem([
+                    'description' => $lineItemData['description'],
+                    'quantity' => $lineItemData['quantity'],
+                    'amount' => $lineItemData['amount'],
+                    'invoice_id' => $invoice->id
+                ]);
+
+                $invoice->invoiceLineItem()->save($lineItem);
+            }
+
+            //Setup the notification for admin
+            $adminRoles = ['super admin', 'admin', 'staff'];
+            $adminUsers = User::role($adminRoles)->get();
+
+            foreach ($adminUsers as $adminUser) {
+                $adminUser->notify(new AdminInvoiceSavedAndPublishedNotification($invoice));
+            }
+
+            //Setup the notification for customer
+            $client = User::find($invoice->client_id);
+            $client->notify(new ClientInvoiceNotification($invoice));
+
+            //Setup the email for customer
+
+
+            return redirect('admin/invoices/edit/' .$invoice->id)->with('success', 'New invoice created successfully');
+        }
+        elseif($action == 'publish_and_record_payment'){
+
+        }
     }
 
     public function markInvoiceAsDraft(Request $request, $id){

@@ -28,12 +28,12 @@
                                 <th>Total</th>
                                 <th>Payment Method</th>
                                 <th>Status</th>
-                                {{--<th class="actions">Actions</th>--}}
+                                <th class="actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($invoices as $invoice)
-                                <tr onclick="window.location.href='{{ route('admin.invoices.edit', $invoice->id) }}'">
+                                <tr>
                                     <td>{{ $invoice->invoice_number }}</td>
                                     <td>{{ $invoice->client->first_name }} {{ $invoice->client->last_name }}</td>
                                     <td>{{ date('d/m/Y', strtotime($invoice->invoice_date)) }}</td>
@@ -47,8 +47,9 @@
                                     </td>
                                     <td>{{ $invoice->payment_method }}</td>
                                     <td>{!! $invoice->getStatus() !!}</td>
-                                    {{--<td class="actions">
+                                    <td class="actions">
                                         <div class="btn-group">
+                                            <a href="{{ route('admin.invoices.show', $invoice->id) }}" class="view-btn"><i class="fas fa-eye"></i></a>
                                             <a href="{{ route('admin.invoices.edit', $invoice->id) }}" class="edit-btn"><i class="fas fa-edit"></i></a>
                                             <form action="" method="POST">
                                                 @csrf
@@ -57,7 +58,7 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    </td>--}}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
