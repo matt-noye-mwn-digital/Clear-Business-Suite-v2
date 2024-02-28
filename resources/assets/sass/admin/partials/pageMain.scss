@@ -22,6 +22,7 @@
         input[type='tel'],
         input[type='password'],
         input[type='date'],
+        input[type='datetime'],
         input[type='datetime-local'],
         input[type='number'],
         input[type='url'],
@@ -49,6 +50,16 @@
             &[readonly]{
                 background-color: $lightGrey;
                 cursor: default;
+            }
+        }
+
+        .input-group-checkbox {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+
+            label {
+                margin-bottom: 0;
             }
         }
 
