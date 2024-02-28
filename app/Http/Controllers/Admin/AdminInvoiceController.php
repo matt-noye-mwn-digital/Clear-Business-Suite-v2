@@ -424,6 +424,14 @@ class AdminInvoiceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+
+        if($invoice->invoiceLineItem){
+            $invoice->invoiceLineItem->delete();
+        }
+
+        $invoice->delete();
+
+        return redirect('admin/invoices')->with('success', 'Invoice deleted successfully');
     }
 }
