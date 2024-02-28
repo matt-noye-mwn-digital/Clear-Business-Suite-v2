@@ -53,6 +53,9 @@
                 <li>
                     <a href="{{ route('admin.transactions.index') }}">Transactions</a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.timesheets.index') }}">Timesheets</a>
+                </li>
             </ul>
         </li>
         <li class="dropdown">
