@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminInvoiceController;
 use App\Http\Controllers\Admin\AdminLeadController;
 use App\Http\Controllers\Admin\AdminNoteController;
 use App\Http\Controllers\Admin\AdminNotificationController;
+use App\Http\Controllers\Admin\AdminTimesheetController;
 use App\Http\Controllers\Admin\AdminTodoController;
 use App\Http\Controllers\Admin\AdminTransactionController;
 use App\Http\Controllers\Admin\AdminUserNoteController;
@@ -154,6 +155,16 @@ Route::middleware(['auth', 'role:super admin|admin|staff'])->name('admin.')->pre
     //Settings Routes
     Route::prefix('settings')->name('settings.')->group(function(){
        Route::get('/', [AdminSettingsController::class, 'index'])->name('index');
+    });
+
+    Route::name('timesheets.')->prefix('timesheets')->group(function(){
+        Route::get('/', [AdminTimesheetController::class, 'index'])->name('index');
+        Route::get('create', [AdminTimesheetController::class, 'create'])->name('create');
+        Route::post('store', [AdminTimesheetController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [AdminTimesheetController::class, 'edit'])->name('edit');
+        Route::put('update/{id}', [AdminTimesheetController::class, 'update'])->name('update');
+        Route::delete('destroy/{id}', [AdminTimesheetController::class, 'destroy'])->name('destroy');
+
     });
 
     //Todos
