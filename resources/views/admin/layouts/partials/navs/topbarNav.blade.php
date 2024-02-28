@@ -33,6 +33,9 @@
                                     Create Invoice
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.timesheets.create') }}">Create Timesheet</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
